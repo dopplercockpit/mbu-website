@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Customizable Clothing — MBU</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <img src="assets/img/MBU-logo.jpg" alt="MBU logo" class="logo">
+      <span class="wordmark">My Buddy Unconditionally</span>
+    </a>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a class="active" href="clothing.html">Clothing</a>
+      <a href="woodworking.html">Woodworking</a>
+      <a href="story.html">Story</a>
+    </nav>
+  </header>
+
+  <section class="page-hero">
+    <h1>Customizable Clothing</h1>
+    <p>Choose a dog, pick patterns & colors, add your words. Make it yours.</p>
+  </section>
+
+  <section class="gallery wrap">
+    <div id="clothing-carousel" class="carousel-root"></div>
+  </section>
+
+  <footer class="site-footer">
+    <p>© My Buddy Unconditionally™</p>
+  </footer>
+
+  <script src="assets/js/carousel.js"></script>
+  <script>
+    loadCarousel({
+      jsonPath: 'assets/img/clothing/images.json',
+      mount: '#clothing-carousel',
+      autoplayMs: 4500,
+      showCaptions: true
+    });
+  </script>
+</body>
+</html>

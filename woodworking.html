@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wood, Epoxy & Metal — MBU</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <img src="assets/img/MBU-logo.jpg" alt="MBU logo" class="logo">
+      <span class="wordmark">My Buddy Unconditionally</span>
+    </a>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="clothing.html">Clothing</a>
+      <a class="active" href="woodworking.html">Woodworking</a>
+      <a href="story.html">Story</a>
+    </nav>
+  </header>
+
+  <section class="page-hero">
+    <h1>Wood, Epoxy & Metal</h1>
+    <p>Built from real materials and a lot of heart. Start with the Magnificent Michigan table.</p>
+  </section>
+
+  <section class="gallery wrap">
+    <div id="wood-carousel" class="carousel-root"></div>
+  </section>
+
+  <footer class="site-footer">
+    <p>© My Buddy Unconditionally™</p>
+  </footer>
+
+  <script src="assets/js/carousel.js"></script>
+  <script>
+    loadCarousel({
+      jsonPath: 'assets/img/woodworking/images.json',
+      mount: '#wood-carousel',
+      autoplayMs: 4500,
+      showCaptions: true
+    });
+  </script>
+</body>
+</html>
