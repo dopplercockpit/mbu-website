@@ -1,0 +1,17 @@
+body {
+  margin:0; font-family: 'Open Sans', sans-serif;
+  background:#f6e9da; color:#333;
+}
+.site-header { display:flex; justify-content:space-between; padding:1rem; background:#4a8ca0; color:white; }
+.logo { height:50px; }
+.hero { text-align:center; padding:4rem 1rem; background:#c9bfae; }
+.btn { padding:.5rem 1rem; border-radius:20px; background:#4a8ca0; color:white; text-decoration:none; margin:0 .5rem; }
+.btn.ghost { background:transparent; border:2px solid #4a8ca0; color:#4a8ca0; }
+.gallery { padding:2rem; }
+.carousel { position:relative; }
+.carousel img { max-width:100%; border-radius:8px; }
+.controls { position:absolute; top:50%; width:100%; display:flex; justify-content:space-between; }
+.controls button { background:rgba(0,0,0,0.5); color:white; border:none; font-size:2rem; }
+.thumbs { display:flex; gap:.5rem; margin-top:1rem; overflow-x:auto; }
+.thumbs img { height:60px; cursor:pointer; opacity:.6; border-radius:4px; }
+.thumbs img.active { opacity:1; border:2px solid #4a8ca0; }
