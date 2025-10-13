@@ -1,116 +1,84 @@
-// Minimal, tough-as-nails carousel with:
-// - BOM stripping
-// - URL-encoded filenames
-// - thumbnails, keyboard, autoplay, hover-pause
-// - lazy-load + prefetch next/prev
-// - optional captions derived from filenames
-
-function stripBOM(text) {
-  return text.charCodeAt(0) === 0xFEFF ? text.slice(1) : text.replace(/^\uFEFF/, '');
+// assets/js/carousel.js
+// Robust carousel that matches: loadCarousel({ jsonPath, mount, autoplayMs, showCaptions })
+function stripBOM(text){ return text.charCodeAt(0)===0xFEFF ? text.slice(1) : text.replace(/^\uFEFF/,''); }
+function humanize(name){
+  const base = name.replace(/\.[^.]+$/, '');
+  return base.replace(/[_\-]+/g,' ').replace(/\s+/g,' ').trim().replace(/\b([a-z])/g, m=>m.toUpperCase());
 }
 
-function humanizeFilename(name) {
-  const base = name.replace(/\.[^.]+$/, '');       // drop extension
-  return base.replace(/[_\-]+/g, ' ')
-             .replace(/\s+/g, ' ')
-             .trim()
-             .replace(/\b([a-z])/g, m => m.toUpperCase());
-}
+async function loadCarousel({ jsonPath, mount, autoplayMs=3500, showCaptions=true }){
+  const root = document.querySelector(mount);
+  if(!root){ console.warn(`✖ mount not found: ${mount}`); return; }
 
-async function loadCarousel({ jsonPath, mount, autoplayMs = 5000, showCaptions = true }) {
-  const el = document.querySelector(mount);
-  if (!el) return console.warn('Carousel mount not found:', mount);
-
-  // fetch JSON safely and handle BOMs
-  const res = await fetch(jsonPath);
-  const text = stripBOM(await res.text());
-  let files = [];
-  try { files = JSON.parse(text); }
-  catch (e) { console.error('Bad images.json at', jsonPath, e); return; }
-
-  if (!Array.isArray(files) || !files.length) {
-    el.innerHTML = '<p class="muted">No images found.</p>';
+  // fetch JSON safely
+  let list=[];
+  try{
+    const res = await fetch(jsonPath);
+    if(!res.ok) throw new Error(`HTTP ${res.status}`);
+    const txt = stripBOM(await res.text());
+    list = JSON.parse(txt);
+  }catch(e){
+    console.warn(`⚠ skipping carousel (${jsonPath}): ${e.message}`);
+    return;
+  }
+  if(!Array.isArray(list) || list.length===0){
+    console.warn(`⚠ no images in ${jsonPath}`);
     return;
   }
 
-  // directory path
-  const dir = jsonPath.replace(/images\.json$/i, '');
+  const dir = jsonPath.replace(/images\.json$/i,'');
+  const srcFor = f => dir + encodeURI(f);
 
-  // URL-safe src builder
-  const srcFor = (fname) => dir + encodeURI(fname);
-
-  // build DOM
-  el.innerHTML = `
-    <div class="carousel">
-      <div class="stage">
-        <img id="c-main" alt="" loading="eager">
-        <div class="caption" id="c-cap" aria-live="polite" ${showCaptions ? '' : 'hidden'}></div>
-        <button class="nav prev" aria-label="Previous">‹</button>
-        <button class="nav next" aria-label="Next">›</button>
-      </div>
-      <div class="thumbs" id="c-thumbs">
-        ${files.map((f,i)=>`<button class="thumb" data-i="${i}" aria-label="Slide ${i+1}">
-            <img src="${srcFor(f)}" alt="">
-          </button>`).join('')}
-      </div>
+  root.innerHTML = `
+    <div class="carousel-wrapper">
+      <img class="carousel-image active" alt="">
+      <div class="caption" ${showCaptions?'':'hidden'}></div>
+      <button class="nav prev" aria-label="Previous">‹</button>
+      <button class="nav next" aria-label="Next">›</button>
     </div>
+    <div class="thumbs"></div>
   `;
+  const main = root.querySelector('.carousel-image');
+  const cap  = root.querySelector('.caption');
+  const prev = root.querySelector('.prev');
+  const next = root.querySelector('.next');
+  const thumbs = root.querySelector('.thumbs');
 
-  const main = el.querySelector('#c-main');
-  const cap  = el.querySelector('#c-cap');
-  const thumbs = [...el.querySelectorAll('.thumb')];
-  const prev = el.querySelector('.prev');
-  const next = el.querySelector('.next');
+  thumbs.innerHTML = list.map((f,i)=>`
+    <button class="thumb" data-i="${i}" aria-label="Slide ${i+1}">
+      <img src="${srcFor(f)}" alt="">
+    </button>`).join('');
 
-  let i = 0, timer = null;
-
-  function setActive(n) {
-    i = (n + files.length) % files.length;
-    const filename = files[i];
-    main.src = srcFor(filename);
-    main.decoding = 'async';
-    main.loading = 'eager';
-    thumbs.forEach((t,idx)=> t.classList.toggle('active', idx===i));
-    if (showCaptions) cap.textContent = humanizeFilename(filename);
-
-    // prefetch neighbors
-    const ahead = new Image(); ahead.src = srcFor(files[(i+1)%files.length]);
-    const back  = new Image(); back.src  = srcFor(files[(i-1+files.length)%files.length]);
+  let idx = 0, t = null;
+  function show(i){
+    idx = (i + list.length) % list.length;
+    main.classList.remove('active');
+    // small delay to let opacity transition reset
+    requestAnimationFrame(()=> {
+      main.src = srcFor(list[idx]);
+      main.alt = humanize(list[idx]);
+      if(showCaptions) cap.textContent = humanize(list[idx]);
+      [...thumbs.children].forEach((b,j)=> b.classList.toggle('active', j===idx));
+      requestAnimationFrame(()=> main.classList.add('active'));
+    });
   }
+  function start(){ stop(); t = setInterval(()=> show(idx+1), autoplayMs); }
+  function stop(){ if(t){ clearInterval(t); t=null; } }
 
-  function start() {
-    stop();
-    timer = setInterval(()=> setActive(i+1), autoplayMs);
-  }
-  function stop(){ if (timer) { clearInterval(timer); timer = null; } }
-
-  prev.addEventListener('click', ()=> { setActive(i-1); start(); });
-  next.addEventListener('click', ()=> { setActive(i+1); start(); });
-
-  thumbs.forEach(t => t.addEventListener('click', e => { setActive(+t.dataset.i); start(); }));
-
-  // keyboard
-  el.addEventListener('keydown', (e)=>{
-    if (e.key === 'ArrowLeft')  { setActive(i-1); start(); }
-    if (e.key === 'ArrowRight') { setActive(i+1); start(); }
+  prev.addEventListener('click', ()=> { show(idx-1); start(); });
+  next.addEventListener('click', ()=> { show(idx+1); start(); });
+  thumbs.addEventListener('click', e=>{
+    const b = e.target.closest('.thumb'); if(!b) return;
+    show(+b.dataset.i); start();
   });
-  el.tabIndex = 0; // focusable
-
-  // pause on hover
-  el.addEventListener('mouseenter', stop);
-  el.addEventListener('mouseleave', start);
-
-  // swipe (basic)
-  let x0 = null;
-  el.addEventListener('pointerdown', e => { x0 = e.clientX; el.setPointerCapture(e.pointerId); });
-  el.addEventListener('pointerup',   e => {
-    if (x0 == null) return;
-    const dx = e.clientX - x0;
-    x0 = null;
-    if (Math.abs(dx) > 40) setActive(i + (dx < 0 ? 1 : -1));
-    start();
+  root.addEventListener('mouseenter', stop);
+  root.addEventListener('mouseleave', start);
+  root.tabIndex = 0;
+  root.addEventListener('keydown', e=>{
+    if(e.key==='ArrowLeft'){ show(idx-1); start(); }
+    if(e.key==='ArrowRight'){ show(idx+1); start(); }
   });
 
-  setActive(0);
-  start();
+  // init
+  show(0); start();
 }

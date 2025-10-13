@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Songs & Music Videos — MBU</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <img src="assets/img/MBU-logo.jpg" alt="MBU logo" class="logo">
+    <span class="wordmark">My Buddy Unconditionally</span>
+  </a>
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="clothing.html">Clothing</a>
+    <a href="woodworking.html">Woodworking</a>
+    <a href="books.html">Books</a>
+    <a class="active" href="songs.html">Songs</a>
+    <a href="story.html">Story</a>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <h1>Songs & Music Videos</h1>
+  <p>Cartwheels on the Water, My Buddy Unconditionally, and more.</p>
+</section>
+
+<section class="gallery wrap">
+  <div id="songs-carousel" class="carousel-root"></div>
+</section>
+
+<footer class="site-footer"><p>© My Buddy Unconditionally™</p></footer>
+
+<script src="assets/js/carousel.js"></script>
+<script>
+  loadCarousel({
+    jsonPath: 'assets/img/songs/images.json',
+    mount: '#songs-carousel',
+    autoplayMs: 4000,
+    showCaptions: true
+  });
+</script>
+</body>
+</html>
