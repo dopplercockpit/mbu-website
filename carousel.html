@@ -5,6 +5,11 @@
 
 <script src="assets/js/carousel.js"></script>
 <script>
-  // load clothing gallery
-  loadCarousel('assets/img/clothing/images.json', '#carousel');
+  loadCarousel({
+    jsonPath: 'assets/img/clothing/images.json',
+    mount: '#carousel',
+    autoplayMs: 4000,
+    showCaptions: true
+  });
 </script>
+

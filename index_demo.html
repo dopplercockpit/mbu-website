@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Buddy Unconditionally — Demo</title>
+
+<!-- Handwritten font -->
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --lake:#4a8ca0; --ink:#222a33; --muted:#5a5f66;
+    --shadow:0 10px 30px rgba(0,0,0,.08); --radius:14px;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; color:var(--ink);
+    font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+    background:
+      radial-gradient(900px 500px at 50% -10%, rgba(74,140,160,.16), transparent 60%),
+      linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.75)),
+      linear-gradient(180deg, #f7f2ea, #ebe4d8);
+  }
+  /* header */
+  .site-header{
+    position:sticky; top:0; z-index:10;
+    backdrop-filter: blur(6px);
+    background:rgba(255,255,255,.65);
+    border-bottom:1px solid #e9e3d8;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:.6rem 1rem;
+  }
+  .logo-area{display:flex; align-items:center; gap:.6rem}
+  .logo{width:44px; height:44px; object-fit:cover; border-radius:10px; box-shadow:var(--shadow)}
+  .site-header h1{margin:0; font-size: clamp(18px,2.4vw,22px);}
+  .nav-links a{color:var(--ink); opacity:.75; text-decoration:none; margin:0 .5rem; padding:.35rem .6rem; border-radius:10px; font-weight:600}
+  .nav-links a.active,.nav-links a:hover{background:#fff; opacity:1; box-shadow:var(--shadow)}
+
+  /* homepage thumbnails */
+  .homepage-showcase{
+    display:grid; grid-template-columns: repeat(5, 220px);
+    gap:16px; padding:32px 5%;
+    justify-content:center; align-items:start;
+  }
+  .showcase-item{width:220px; text-align:center}
+  .caption{
+    margin:0 0 6px; font-family:'Patrick Hand','Segoe Print','Comic Sans MS',cursive;
+    font-size:20px; color:#3a2b1b; letter-spacing:.3px;
+    text-shadow:1px 1px 0 rgba(255,255,255,.7);
+  }
+  .showcase-item img{
+    width:100%; height:140px; object-fit:cover; border-radius:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,.12);
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .showcase-item:hover img{transform:translateY(-2px); box-shadow:0 8px 16px rgba(0,0,0,.18)}
+  .dual .dual-image{display:flex; gap:4px}
+  .dual .dual-image img{width:calc(50% - 2px); height:140px; object-fit:cover; border-radius:12px}
+
+  @media (max-width:1200px){ .homepage-showcase{grid-template-columns: repeat(3,220px);} }
+  @media (max-width:740px){
+    .homepage-showcase{grid-template-columns: repeat(2,44vw); gap:12px}
+    .showcase-item{width:44vw}
+    .showcase-item img,.dual .dual-image img{height:28vw}
+  }
+
+  .footer{ text-align:center; padding:2rem 1rem; color:var(--muted); background:linear-gradient(180deg,#f7f3ef,#efe8db) }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="logo-area">
+    <img src="assets/img/homepage/logo.jpg" class="logo" alt="MBU logo">
+    <h1>My Buddy Unconditionally</h1>
+  </div>
+  <nav class="nav-links">
+    <a class="active" href="#">Home</a>
+    <a href="books.html">Books</a>
+    <a href="clothing.html">Clothing</a>
+    <a href="songs.html">Songs</a>
+    <a href="woodworking.html">Woodworking</a>
+    <a href="story.html">Story</a>
+  </nav>
+</header>
+
+<main class="homepage-showcase">
+  <div class="showcase-item">
+    <p class="caption">Find Bruno the Traveling Dog</p>
+    <a href="https://www.amazon.com/stores/author/B0CN1ZTT9V" target="_blank" rel="noopener">
+      <img src="assets/img/homepage/books.jpg" alt="Books">
+    </a>
+  </div>
+
+  <div class="showcase-item">
+    <p class="caption">Customizable Clothing</p>
+    <a href="https://mybuddyunconditionally.teamatical.com/" target="_blank" rel="noopener">
+      <img src="assets/img/homepage/clothing_custom.jpg" alt="Clothing">
+    </a>
+  </div>
+
+  <div class="showcase-item">
+    <p class="caption">Songs & Music Videos</p>
+    <a href="songs.html">
+      <img src="assets/img/homepage/songs.jpg" alt="Songs & Music Videos">
+    </a>
+  </div>
+
+  <div class="showcase-item">
+    <p class="caption">Wood, Epoxy & Metal Work</p>
+    <a href="https://www.youtube.com/@OldLadyWoodworking" target="_blank" rel="noopener">
+      <img src="assets/img/homepage/woodworking.jpg" alt="Woodworking">
+    </a>
+  </div>
+
+  <div class="showcase-item dual">
+    <p class="caption">The Story Behind It All</p>
+    <a href="https://www.amazon.com/dp/B0CP1FVV3G" target="_blank" rel="noopener">
+      <div class="dual-image">
+        <img src="assets/img/homepage/action_plan_left.jpg" alt="Formula Left">
+        <img src="assets/img/homepage/action_plan_right.jpg" alt="Formula Right">
+      </div>
+    </a>
+  </div>
+</main>
+
+<footer class="footer"><p>© My Buddy Unconditionally™</p></footer>
+</body>
+</html>

@@ -1,46 +1,56 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Books — MBU</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Books | My Buddy Unconditionally</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <script src="carousel.js" defer></script>
 </head>
 <body>
-<header class="site-header">
-  <a class="brand" href="index.html">
-    <img src="assets/img/MBU-logo.jpg" alt="MBU logo" class="logo">
-    <span class="wordmark">My Buddy Unconditionally</span>
-  </a>
-  <nav class="nav">
-    <a href="index.html">Home</a>
-    <a href="clothing.html">Clothing</a>
-    <a href="woodworking.html">Woodworking</a>
-    <a class="active" href="books.html">Books</a>
-    <a href="songs.html">Songs</a>
-    <a href="story.html">Story</a>
-  </nav>
-</header>
 
-<section class="page-hero">
-  <h1>Books</h1>
-  <p>Find Bruno the Traveling Dog, My Buddy Unconditionally, and more.</p>
-</section>
+  <header class="site-header">
+    <div class="logo-area">
+      <img src="assets/img/homepage/logo.jpg" alt="MBU Logo" class="logo" />
+      <h1>My Buddy Unconditionally</h1>
+    </div>
+    <nav class="site-nav">
+      <a href="index.html">Home</a>
+      <a class="active" href="books.html">Books</a>
+      <a href="clothing.html">Clothing</a>
+      <a href="songs.html">Songs</a>
+      <a href="woodworking.html">Woodworking</a>
+      <a href="story.html">Story</a>
+    </nav>
+  </header>
 
-<section class="gallery wrap">
-  <div id="books-carousel" class="carousel-root"></div>
-</section>
+  <main class="page-content">
+    <h2 class="page-title hand">Find Bruno Books</h2>
+    <p class="intro-text">
+      Find Bruno the Traveling Dog, My Buddy Unconditionally, and more.
+    </p>
 
-<footer class="site-footer"><p>© My Buddy Unconditionally™</p></footer>
+    <!-- Carousel container -->
+    <div id="carousel" class="carousel-container" data-json="images/books/images.json">
+      <div class="carousel-track"></div>
+      <button class="carousel-btn prev">&#10094;</button>
+      <button class="carousel-btn next">&#10095;</button>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>© My Buddy Unconditionally™</p>
+  </footer>
 
 <script src="assets/js/carousel.js"></script>
 <script>
   loadCarousel({
-    jsonPath: 'assets/img/books/images.json',
-    mount: '#books-carousel',
+    jsonPath: 'assets/img/books/images.json',   <!-- adjust per page -->
+    mount: '#books-carousel',                   <!-- adjust per page -->
     autoplayMs: 4000,
     showCaptions: true
   });
 </script>
+  
 </body>
 </html>
