@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lucy — 5 Great Lakes — MBU</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="logo-area">
+    <img src="assets/img/homepage/logo.jpg" alt="MBU logo" class="logo">
+    <h1>My Buddy Unconditionally</h1>
+  </div>
+  <!-- use the dropdown nav block from section 3 -->
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="books.html">Books</a>
+    <a href="songs.html">Songs</a>
+    <a href="woodworking.html">Woodworking</a>
+    <a href="story.html">Story</a>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <h1>Lucy — 5 Great Lakes</h1>
+  <p>Signs and Lucy’s photos rotate in sync. 3s per image; if a lake has two photos, the sign stays 6s.</p>
+</section>
+
+<section class="three-panel" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;max-width:1200px;margin:2rem auto;padding:1rem;">
+  <div class="panel">
+    <h3>Intro</h3>
+    <p>Cover image or video here.</p>
+  </div>
+  <div class="panel">
+    <h3>Lake Signs</h3>
+    <div id="signs" class="carousel-root"></div>
+  </div>
+  <div class="panel">
+    <h3>Lucy at Each Lake</h3>
+    <div id="lakes" class="carousel-root"></div>
+  </div>
+</section>
+
+<section class="capture">
+  <form class="mbu-capture" data-section="lucy-5-lakes">
+    <strong>Stay in the loop:</strong>
+    <input name="name" placeholder="Your name">
+    <input name="email" placeholder="Your email">
+    <button type="submit">Notify me</button>
+  </form>
+</section>
+
+<footer class="footer">
+  <p>© My Buddy Unconditionally™</p>
+  <div class="links">
+    <a href="contact.html">Contact Us</a> ·
+    <a href="terms.html">Terms and Conditions</a> ·
+    <a href="privacy.html">Privacy Notice</a>
+  </div>
+</footer>
+
+<script src="assets/js/site.js"></script>
+<script>
+(async function(){
+  const base = 'assets/img/lucy/'; // later: https://cdn.example.com/lucy/
+
+  async function fetchJSON(p){ const r = await fetch(p); if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); }
+
+  // Provide these JSONs: 
+  // signs.json: ["sign-superior.jpg","sign-michigan.jpg","sign-huron.jpg","sign-erie.jpg","sign-ontario.jpg"]
+  // lakes.json: [ ["lucy-superior-1.jpg","lucy-superior-2.jpg"], ["lucy-michigan-1.jpg"], ... ]
+  const signs = await fetchJSON(base + 'signs.json');
+  const lakes = await fetchJSON(base + 'lakes.json');
+
+  const signBox = document.querySelector('#signs');
+  const lakeBox = document.querySelector('#lakes');
+  signBox.innerHTML = '<div class="carousel-wrapper"><img class="carousel-image active" alt=""></div>';
+  lakeBox.innerHTML = '<div class="carousel-wrapper"><img class="carousel-image active" alt=""></div>';
+  const signImg = signBox.querySelector('img');
+  const lakeImg = lakeBox.querySelector('img');
+  let i = 0, j = 0;
+
+  function show(){
+    signImg.src = base + encodeURI(signs[i]);
+    signImg.alt = signs[i];
+    const group = lakes[i] || [];
+    if(group.length === 0){ lakeImg.removeAttribute('src'); }
+    else {
+      lakeImg.src = base + encodeURI(group[j % group.length]);
+      lakeImg.alt = group[j % group.length];
+    }
+  }
+
+  function scheduleNext(){
+    const group = lakes[i] || [];
+    const step = 3000; // 3s per image
+    if(group.length <= 1){
+      setTimeout(()=>{ i = (i + 1) % signs.length; j = 0; show(); scheduleNext(); }, step);
+    }else{
+      setTimeout(()=>{ j++; if(j >= group.length){ i = (i + 1) % signs.length; j = 0; } show(); scheduleNext(); }, step);
+    }
+  }
+
+  show(); scheduleNext();
+})();
+</script>
+</body>
+</html>

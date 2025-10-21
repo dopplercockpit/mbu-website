@@ -1,56 +1,82 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Books | My Buddy Unconditionally</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
-  <script src="carousel.js" defer></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Books — MBU</title>
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+<header class="site-header">
+  <div class="logo-area">
+    <img src="assets/img/homepage/logo.jpg" alt="MBU logo" class="logo">
+    <h1>My Buddy Unconditionally</h1>
+  </div>
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
 
-  <header class="site-header">
-    <div class="logo-area">
-      <img src="assets/img/homepage/logo.jpg" alt="MBU Logo" class="logo" />
-      <h1>My Buddy Unconditionally</h1>
+    <div class="has-sub"><a href="books.html">Books</a>
+      <div class="submenu">
+        <a href="mbu-book.html">My Buddy Unconditionally (Book)</a>
+        <a href="fbttd-v1.html">Find Bruno Vol. 1</a>
+        <a href="fbttd-v2.html">Find Bruno Vol. 2</a>
+        <a href="fbttd-v3.html">Find Bruno Vol. 3</a>
+        <a href="fbttd-v4.html">Find Bruno Vol. 4</a>
+        <a href="momm-book.html">The Making of Magnificent Michigan (Book)</a>
+        <a href="lucy-5-lakes.html">Lucy 5 Great Lakes</a>
+      </div>
     </div>
-    <nav class="site-nav">
-      <a href="index.html">Home</a>
-      <a class="active" href="books.html">Books</a>
-      <a href="clothing.html">Clothing</a>
-      <a href="songs.html">Songs</a>
-      <a href="woodworking.html">Woodworking</a>
-      <a href="story.html">Story</a>
-    </nav>
-  </header>
 
-  <main class="page-content">
-    <h2 class="page-title hand">Find Bruno Books</h2>
-    <p class="intro-text">
-      Find Bruno the Traveling Dog, My Buddy Unconditionally, and more.
-    </p>
-
-    <!-- Carousel container -->
-    <div id="carousel" class="carousel-container" data-json="images/books/images.json">
-      <div class="carousel-track"></div>
-      <button class="carousel-btn prev">&#10094;</button>
-      <button class="carousel-btn next">&#10095;</button>
+    <div class="has-sub"><a href="clothing.html">Clothing</a>
+      <div class="submenu">
+        <a href="clothing.html#mbu">MBU</a>
+        <a href="clothing.html#findbruno">Find Bruno</a>
+        <a href="clothing.html#dogthing">It’s a Dog Thing</a>
+        <a href="clothing.html#ibelieve">I Believe I Will</a>
+      </div>
     </div>
-  </main>
 
-  <footer class="footer">
-    <p>© My Buddy Unconditionally™</p>
-  </footer>
+    <div class="has-sub"><a href="songs.html">Songs</a>
+      <div class="submenu">
+        <a href="mbu-song.html">My Buddy Unconditionally</a>
+        <a href="cartwheels.html">Cartwheels on the Water</a>
+      </div>
+    </div>
+
+    <div class="has-sub"><a href="woodworking.html">Woodworking</a>
+      <div class="submenu">
+        <a href="momm.html">Table Build Photos & Videos</a>
+        <a href="momm-book.html">The Making of Magnificent Michigan (Book)</a>
+      </div>
+    </div>
+
+    <a href="story.html">Story</a>
+  </nav>
+
+</header>
+
+<section class="page-hero">
+  <h1>Books</h1>
+  <p>Find Bruno the Traveling Dog, My Buddy Unconditionally, and more.</p>
+</section>
+
+<section class="gallery wrap">
+  <div id="books-carousel" class="carousel-root"></div>
+</section>
+
+<footer class="footer"><p>© My Buddy Unconditionally™</p></footer>
 
 <script src="assets/js/carousel.js"></script>
 <script>
   loadCarousel({
-    jsonPath: 'assets/img/books/images.json',   <!-- adjust per page -->
-    mount: '#books-carousel',                   <!-- adjust per page -->
+    /* Local path (current) OR swap to CDN:
+       jsonPath: 'https://cdn.example.com/books/images.json' */
+    jsonPath: 'assets/img/books/images.json',
+    mount: '#books-carousel',
     autoplayMs: 4000,
     showCaptions: true
   });
 </script>
-  
+<script src="assets/js/site.js"></script>
 </body>
 </html>

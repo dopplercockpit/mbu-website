@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Find Bruno the Traveling Dog — Volume 1</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="logo-area">
+    <img src="assets/img/homepage/logo.jpg" alt="MBU logo" class="logo">
+    <h1>My Buddy Unconditionally</h1>
+  </div>
+  <!-- dropdown nav from section 3 -->
+  <nav class="nav-links"><a href="index.html">Home</a><a href="books.html">Books</a><a href="story.html">Story</a></nav>
+</header>
+
+<section class="page-hero">
+  <h1>Find Bruno — Volume 1</h1>
+  <p>Can you find Bruno? Click him to turn the page.</p>
+</section>
+
+<section class="three-panel" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;max-width:1200px;margin:2rem auto;padding:1rem;">
+  <div class="panel">
+    <img src="assets/img/homepage/books.jpg" alt="V1 Cover" style="width:100%;height:auto;border-radius:12px;">
+    <p><a href="https://www.amazon.com/s?k=Find+Bruno+the+Traveling+Dog+Volume+1+Dana+Greene" target="_blank" rel="noopener">Purchase Volume 1</a></p>
+  </div>
+  <div class="panel">
+    <h3>Instructions</h3>
+    <p>Find Bruno in the picture. Click him to reveal the solution.<br>(We’ll wire the full set of pages after approval of this interaction.)</p>
+  </div>
+  <div class="panel">
+    <h3>Can you find Bruno?</h3>
+    <canvas id="bruno-canvas" style="width:100%;max-width:1000px;border-radius:12px;"></canvas>
+  </div>
+</section>
+
+<section class="capture">
+  <form class="mbu-capture" data-section="fbttd-v1">
+    <strong>Stay in the loop:</strong>
+    <input name="name" placeholder="Your name">
+    <input name="email" placeholder="Your email">
+    <button type="submit">Notify me</button>
+  </form>
+</section>
+
+<footer class="footer">
+  <p>© My Buddy Unconditionally™</p>
+  <div class="links"><a href="contact.html">Contact Us</a> · <a href="terms.html">Terms and Conditions</a> · <a href="privacy.html">Privacy Notice</a></div>
+</footer>
+
+<script src="assets/js/site.js"></script>
+<script>
+// Minimal puzzle demo — replace with real image paths and hit box.
+(function(){
+  const canvas = document.getElementById('bruno-canvas');
+  const ctx = canvas.getContext('2d');
+  const img = new Image();
+  const src = 'assets/img/findbruno/v1/puzzle.jpg';      // TODO: swap to real
+  const solutionSrc = 'assets/img/findbruno/v1/solution.jpg';
+
+  // Relative hit box (x,y,w,h) in 0..1 coords
+  const hit = { x: 0.62, y: 0.41, w: 0.08, h: 0.12 };
+
+  function resize(){
+    const maxW = Math.min(1000, canvas.parentElement.clientWidth);
+    const ratio = img.naturalHeight ? img.naturalWidth / img.naturalHeight : 1.5;
+    canvas.width = maxW;
+    canvas.height = Math.round(maxW / ratio);
+    draw();
+  }
+  function draw(){
+    if(!img.complete) return;
+    ctx.clearRect(0,0,canvas.width, canvas.height);
+    ctx.drawImage(img, 0,0, canvas.width, canvas.height);
+  }
+  function withinHit(px,py){
+    const x = hit.x * canvas.width, y = hit.y * canvas.height;
+    const w = hit.w * canvas.width,  h = hit.h * canvas.height;
+    return px>=x && px<=x+w && py>=y && py<=y+h;
+  }
+
+  canvas.addEventListener('click', (e)=>{
+    const r = canvas.getBoundingClientRect();
+    const px = e.clientX - r.left, py = e.clientY - r.top;
+    if(withinHit(px,py)){
+      const sol = new Image();
+      sol.onload = ()=>{ img.src = solutionSrc; img.onload = ()=> { resize(); }; };
+      sol.src = solutionSrc;
+    }
+  });
+
+  img.onload = ()=> resize();
+  window.addEventListener('resize', resize);
+  img.src = src;
+})();
+</script>
+</body>
+</html>

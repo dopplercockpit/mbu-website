@@ -6,94 +6,67 @@
   <title>Three-Panel Concept — MBU</title>
   <link rel="stylesheet" href="assets/css/style.css">
   <style>
-    /* --- Three-panel demo styles (isolated) --- */
-    .three-panel {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 1rem;
-      max-width: 1200px;
-      margin: 2rem auto;
-      padding: 1rem;
-    }
-    .panel {
-      background: #fff;
-      border: 1px solid #efe8db;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
-    .panel img {
-      width: 100%;
-      height: auto;
-      border-radius: var(--radius);
-      object-fit: cover;
-    }
-    .panel h3 { margin-top: .5rem; margin-bottom: .25rem; }
-    .panel p { color: var(--muted); margin: 0; }
-    @media (max-width: 900px){
-      .three-panel { grid-template-columns: 1fr; }
-    }
+    /* Three-panel demo styles (isolated) */
+    .three-panel { display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; max-width:1200px; margin:2rem auto; padding:1rem; }
+    .panel { background:#fff; border:1px solid #efe8db; border-radius:var(--radius); box-shadow:var(--shadow); padding:1rem; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; }
+    .panel img { width:100%; height:auto; border-radius:var(--radius); object-fit:cover; }
+    .panel h3 { margin-top:.5rem; margin-bottom:.25rem; }
+    .panel p { color:var(--muted); margin:0; }
+    @media (max-width:900px){ .three-panel { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
-  <header class="site-header">
-    <a class="brand" href="index.html">
-      <img src="assets/img/MBU-logo.jpg" alt="MBU logo" class="logo">
-      <span class="wordmark">My Buddy Unconditionally</span>
-    </a>
-    <nav class="nav">
-      <a href="index.html">Home</a>
-      <a href="clothing.html">Clothing</a>
-      <a href="woodworking.html">Woodworking</a>
-      <a class="active" href="threepanel.html">Three-Panel Demo</a>
-    </nav>
-  </header>
+<header class="site-header">
+  <div class="logo-area">
+    <img src="assets/img/homepage/logo.jpg" alt="MBU logo" class="logo">
+    <h1>My Buddy Unconditionally</h1>
+  </div>
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="clothing.html">Clothing</a>
+    <a href="woodworking.html">Woodworking</a>
+    <a class="active" href="threepanel.html">Three-Panel Demo</a>
+  </nav>
+</header>
 
-  <section class="page-hero">
-    <h1>Three-Panel Layout Concept</h1>
-    <p>Illustrating Dana’s requested left-to-right structure: Cover | Instructions | Image rotation.</p>
-  </section>
+<section class="page-hero">
+  <h1>Three-Panel Layout Concept</h1>
+  <p>Illustrating Dana’s requested left-to-right structure: Cover | Instructions | Image rotation.</p>
+</section>
 
-  <section class="three-panel">
-    <!-- Panel 1: Cover -->
-    <div class="panel">
+<section class="three-panel">
+  <!-- Panel 1: Cover -->
+  <div class="panel">
     <img src="assets/img/woodworking/Magnificent%20Michigan%20Epoxy%20Table%20003.jpg" alt="Magnificent Michigan Epoxy Table Cover">
-      <h3>Panel 1 — Cover</h3>
-      <p>Book or product cover image.</p>
-    </div>
+    <h3>Panel 1 — Cover</h3>
+    <p>Book or product cover image.</p>
+  </div>
 
-    <!-- Panel 2: Instructions/Text -->
-    <div class="panel">
-      <h3>Panel 2 — Instructions</h3>
-      <p>This area holds Dana’s text or step-by-step notes.<br>
-         Example: “Can you find Bruno? Look carefully at the images on the right.”</p>
-    </div>
+  <!-- Panel 2: Instructions/Text -->
+  <div class="panel">
+    <h3>Panel 2 — Instructions</h3>
+    <p>This area holds Dana’s text or step-by-step notes.<br>
+       Example: “Can you find Bruno? Look carefully at the images on the right.”</p>
+  </div>
 
-    <!-- Panel 3: Rotating Images / Carousel -->
-    <div class="panel">
-      <h3>Panel 3 — Images</h3>
-      <div id="demo-carousel" class="carousel-root"></div>
-    </div>
-  </section>
+  <!-- Panel 3: Rotating Images / Carousel -->
+  <div class="panel">
+    <h3>Panel 3 — Images</h3>
+    <div id="demo-carousel" class="carousel-root"></div>
+  </div>
+</section>
 
-  <footer class="site-footer">
-    <p>© My Buddy Unconditionally™</p>
-  </footer>
+<footer class="footer"><p>© My Buddy Unconditionally™</p></footer>
 
-  <script src="assets/js/carousel.js"></script>
-  <script>
-    // Load a few woodworking images for this demo
-    loadCarousel({
-      jsonPath: 'assets/img/woodworking/images.json',
-      mount: '#demo-carousel',
-      autoplayMs: 3500,
-      showCaptions: true
-    });
-  </script>
+<script src="assets/js/carousel.js"></script>
+<script>
+  loadCarousel({
+    /* Or: 'https://cdn.example.com/woodworking/images.json' */
+    jsonPath: 'assets/img/woodworking/images.json',
+    mount: '#demo-carousel',
+    autoplayMs: 3500,
+    showCaptions: true
+  });
+</script>
 </body>
 </html>

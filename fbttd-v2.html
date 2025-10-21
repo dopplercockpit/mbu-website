@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><!-- PAGE TITLE --> — MBU</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="logo-area"><img src="assets/img/homepage/logo.jpg" alt="MBU logo" class="logo"><h1>My Buddy Unconditionally</h1></div>
+  <!-- dropdown nav goes here -->
+</header>
+
+<section class="page-hero">
+  <h1><!-- PAGE TITLE --></h1>
+  <p><!-- Short subtitle --></p>
+</section>
+
+<section class="three-panel" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;max-width:1200px;margin:2rem auto;padding:1rem;">
+  <div class="panel"><!-- Panel 1: cover/art --></div>
+  <div class="panel"><!-- Panel 2: words/instructions --></div>
+  <div class="panel">
+    <h3><!-- Panel 3 heading --></h3>
+    <div id="page-carousel" class="carousel-root"></div>
+  </div>
+</section>
+
+<section class="capture">
+  <form class="mbu-capture" data-section="<!-- slug -->">
+    <strong>Stay in the loop:</strong>
+    <input name="name" placeholder="Your name"><input name="email" placeholder="Your email">
+    <button type="submit">Notify me</button>
+  </form>
+</section>
+
+<footer class="footer">
+  <p>© My Buddy Unconditionally™</p>
+  <div class="links"><a href="contact.html">Contact Us</a> · <a href="terms.html">Terms and Conditions</a> · <a href="privacy.html">Privacy Notice</a></div>
+</footer>
+
+<script src="assets/js/site.js"></script>
+<script src="assets/js/carousel.js"></script>
+<script>
+  loadCarousel({
+    // swap to CDN whenever ready:
+    jsonPath: 'assets/img/fbttd-v2/images.json',
+    mount: '#page-carousel',
+    autoplayMs: 3000,
+    showCaptions: true
+  });
+</script>
+</body>
+</html>
