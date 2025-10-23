@@ -50,8 +50,8 @@ async function loadCarousel({ jsonPath, mount, autoplayMs = 3500, showCaptions =
     <div class="carousel-wrapper">
       <img class="carousel-image active" alt="">
       <div class="caption" ${showCaptions ? '' : 'hidden'}></div>
-      <button class="nav prev" aria-label="Previous">‹</button>
-      <button class="nav next" aria-label="Next">›</button>
+      <button class="nav carousel-btn prev" aria-label="Previous">‹</button>
+      <button class="nav carousel-btn next" aria-label="Next">›</button>
     </div>
     <div class="thumbs" role="tablist"></div>
   `;

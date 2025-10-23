@@ -81,16 +81,35 @@
   const lakeImg = lakeBox.querySelector('img');
   let i = 0, j = 0;
 
+  function asSrc(name){
+    if(!name) return "";
+    const abs = /^https?:\/\//i.test(name) || name.startsWith("//");
+    return abs ? name : (base + encodeURI(name));
+  }
+
+  function human(name){
+    try{
+      const s = String(name).split("/").pop();
+      return s ? s.replace(/\.[^.]+$/, "").replace(/[_\-]+/g," ").trim() : "";
+    }catch{ return ""; }
+  }
+
   function show(){
-    signImg.src = base + encodeURI(signs[i]);
-    signImg.alt = signs[i];
+    const sign = signs[i];
+    signImg.src = asSrc(sign);
+    signImg.alt = human(sign);
+
     const group = lakes[i] || [];
-    if(group.length === 0){ lakeImg.removeAttribute('src'); }
-    else {
-      lakeImg.src = base + encodeURI(group[j % group.length]);
-      lakeImg.alt = group[j % group.length];
+    if(group.length === 0){
+      lakeImg.removeAttribute('src');
+      lakeImg.alt = "";
+    } else {
+      const item = group[j % group.length];
+      lakeImg.src = asSrc(item);
+      lakeImg.alt = human(item);
     }
   }
+
 
   function scheduleNext(){
     const group = lakes[i] || [];
