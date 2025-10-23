@@ -63,30 +63,24 @@
 <script src="assets/js/site.js"></script>
 <script>
 (async function(){
-  const base = 'assets/img/lucy/'; // later: https://cdn.example.com/lucy/
+  const base = 'assets/img/lucy/'; // used only if items are filenames
 
-  async function fetchJSON(p){ const r = await fetch(p); if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); }
-
-  // Provide these JSONs: 
-  // signs.json: ["sign-superior.jpg","sign-michigan.jpg","sign-huron.jpg","sign-erie.jpg","sign-ontario.jpg"]
-  // lakes.json: [ ["lucy-superior-1.jpg","lucy-superior-2.jpg"], ["lucy-michigan-1.jpg"], ... ]
-  const signs = await fetchJSON(base + 'signs.json');
-  const lakes = await fetchJSON(base + 'lakes.json');
-
-  const signBox = document.querySelector('#signs');
-  const lakeBox = document.querySelector('#lakes');
-  signBox.innerHTML = '<div class="carousel-wrapper"><img class="carousel-image active" alt=""></div>';
-  lakeBox.innerHTML = '<div class="carousel-wrapper"><img class="carousel-image active" alt=""></div>';
-  const signImg = signBox.querySelector('img');
-  const lakeImg = lakeBox.querySelector('img');
-  let i = 0, j = 0;
-
-  function asSrc(name){
-    if(!name) return "";
-    const abs = /^https?:\/\//i.test(name) || name.startsWith("//");
-    return abs ? name : (base + encodeURI(name));
+  // fetch helper
+  async function fetchJSON(p){
+    const r = await fetch(p);
+    if(!r.ok) throw new Error('HTTP '+r.status+' for '+p);
+    return r.json();
   }
 
+  // allow absolute URLs or filenames
+  function asSrc(name){
+    if(!name) return "";
+    const s = String(name);
+    if (/^(https?:)?\/\//i.test(s)) return s; // absolute
+    return base + encodeURI(s);               // filename
+  }
+
+  // alt text from filename/URL
   function human(name){
     try{
       const s = String(name).split("/").pop();
@@ -94,35 +88,73 @@
     }catch{ return ""; }
   }
 
-  function show(){
-    const sign = signs[i];
-    signImg.src = asSrc(sign);
-    signImg.alt = human(sign);
+  // mount
+  const signBox = document.querySelector('#signs');
+  const lakeBox = document.querySelector('#lakes');
+  signBox.innerHTML = '<div class="carousel-wrapper"><img class="carousel-image active" alt=""></div>';
+  lakeBox.innerHTML = '<div class="carousel-wrapper"><img class="carousel-image active" alt=""></div>';
+  const signImg = signBox.querySelector('img');
+  const lakeImg = lakeBox.querySelector('img');
 
-    const group = lakes[i] || [];
+  // load data
+  const signs = await fetchJSON(base + 'signs.json');   // array of strings
+  const lakes = await fetchJSON(base + 'lakes.json');   // array of arrays (same length as signs)
+
+  // sanity guards
+  if(!Array.isArray(signs) || !Array.isArray(lakes) || signs.length === 0){
+    signBox.textContent = 'No signs found.'; 
+    lakeBox.textContent = 'No lake photos found.';
+    return;
+  }
+
+  // ensure lakes[i] is always an array
+  for(let i=0;i<signs.length;i++){
+    if(!Array.isArray(lakes[i])) lakes[i] = [];
+  }
+
+  let i = 0, j = 0;   // i = lake index, j = photo index within that lake
+  const STEP = 3000;  // 3s per image
+
+  function show(){
+    // sign
+    signImg.src = asSrc(signs[i]);
+    signImg.alt = human(signs[i]);
+
+    // lake image (may be 0..n)
+    const group = lakes[i];
     if(group.length === 0){
-      lakeImg.removeAttribute('src');
+      lakeImg.src = "";
       lakeImg.alt = "";
-    } else {
+      lakeImg.style.display = "none";
+    }else{
+      lakeImg.style.display = "";
       const item = group[j % group.length];
       lakeImg.src = asSrc(item);
       lakeImg.alt = human(item);
     }
   }
 
-
-  function scheduleNext(){
-    const group = lakes[i] || [];
-    const step = 3000; // 3s per image
-    if(group.length <= 1){
-      setTimeout(()=>{ i = (i + 1) % signs.length; j = 0; show(); scheduleNext(); }, step);
-    }else{
-      setTimeout(()=>{ j++; if(j >= group.length){ i = (i + 1) % signs.length; j = 0; } show(); scheduleNext(); }, step);
-    }
+  function schedule(){
+    const group = lakes[i];
+    setTimeout(()=>{
+      if(group.length <= 1){
+        // single (or none): advance to next lake
+        i = (i + 1) % signs.length;
+        j = 0;
+      }else{
+        // multiple photos: iterate within group; after last, advance lake
+        j++;
+        if(j >= group.length){ i = (i + 1) % signs.length; j = 0; }
+      }
+      show();
+      schedule();
+    }, STEP);
   }
 
-  show(); scheduleNext();
+  show();
+  schedule();
 })();
 </script>
+
 </body>
 </html>
