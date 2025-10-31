@@ -4,8 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Books — MBU</title>
+  <link rel="preload" href="assets/css/style.css" as="style">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
+
+<script src="assets/js/site.js"></script>
+<!-- Include carousel.js only on pages that actually show a carousel -->
+<script src="assets/js/carousel.js"></script>
+
 <body>
 <header class="site-header">
   <div class="logo-area">
@@ -85,5 +91,16 @@
   });
 </script>
 <script src="assets/js/site.js"></script>
+<script src="assets/js/site.js"></script>
+<script src="assets/js/carousel.js"></script>
+<script>
+  loadCarousel({
+    jsonPath: 'assets/img/<section>/images.json',
+    mount: '#<section>-carousel',
+    autoplayMs: 4000,
+    showCaptions: true
+  });
+</script>
+
 </body>
 </html>
