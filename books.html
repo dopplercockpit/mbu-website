@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Books â€” MBU</title>
-  <link rel="preload" href="css/style.css" as="style">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="preload" href="assets/css/style.css" as="style">
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
-<script src="js/site.js"></script>
+<script src="assets/js/site.js"></script>
 <!-- Include carousel.js only on pages that actually show a carousel -->
-<script src="js/carousel.js"></script>
+<script src="assets/js/carousel.js"></script>
 
 <body>
 <header class="site-header">
@@ -79,28 +79,16 @@
   </div>
 </footer>
 
-<script src="js/carousel.js"></script>
+<script src="assets/js/carousel.js"></script>
 <script>
   loadCarousel({
-    /* Local path (current) OR swap to CDN:
-       jsonPath: 'https://cdn.example.com/books/images.json' */
     jsonPath: 'https://mbu-assets.vercel.app/img/books/images.json',
     mount: '#books-carousel',
     autoplayMs: 4000,
     showCaptions: true
   });
 </script>
-<script src="js/site.js"></script>
-<script src="js/site.js"></script>
-<script src="js/carousel.js"></script>
-<script>
-  loadCarousel({
-    jsonPath: 'assets/img/<section>/images.json',
-    mount: '#<section>-carousel',
-    autoplayMs: 4000,
-    showCaptions: true
-  });
-</script>
+<script src="assets/js/site.js"></script>
 
 </body>
 </html>

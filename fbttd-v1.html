@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Find Bruno the Traveling Dog â€” Volume 1</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 <header class="site-header">
@@ -51,7 +51,7 @@
 </footer>
 
 <!-- One copy only -->
-<script src="js/site.js"></script>
+<script src="assets/js/site.js"></script>
 
 <!-- Hotspot module -->
 <script src="assets/js/hotspots.js"></script>
@@ -61,10 +61,11 @@
   //   - solution.jpg
   //   - hotspots.json  (with x,y,w,h in 0..1)
   initHotspotPuzzle({
-    jsonPath: 'assets/img/findbruno/v1/hotspots.json',
+    jsonPath: 'https://mbu-assets.vercel.app/img/findbruno/v1/hotspots.json',
     mount: '#puzzle',
-    debug: true   // shows the red box while you tweak coordinates
+    debug: true
   });
+
 </script>
 </body>
 </html>
