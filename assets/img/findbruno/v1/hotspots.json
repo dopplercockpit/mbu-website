@@ -1,0 +1,7 @@
+{
+  "puzzle": "puzzle.jpg",
+  "solution": "solution.jpg",
+  "hotspots": [
+    { "id": "bruno", "x": 0.62, "y": 0.41, "w": 0.08, "h": 0.12, "label": "Bruno" }
+  ]
+}

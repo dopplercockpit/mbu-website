@@ -309,3 +309,38 @@ form.mbu-capture.sent::after{ content:"Thanks!"; margin-left:.5rem; color:#2b7c3
 .footer .links{ display:flex; gap:.6rem; justify-content:center; flex-wrap:wrap; margin-top:.35rem; }
 .footer .links a{ color:var(--muted); text-decoration:none; }
 .footer .links a:hover{ color:var(--ink); text-decoration:underline; }
+
+/* === Carousel (shared) === */
+.carousel-root { margin: 1.5rem auto; max-width: 1100px; }
+.carousel-wrapper {
+  position: relative; background:#fff; border-radius: var(--radius);
+  box-shadow: var(--shadow); overflow: hidden; min-height: 320px;
+}
+.carousel-image { display:block; width:100%; height:auto; }
+.carousel-btn {
+  position:absolute; top:50%; transform:translateY(-50%); z-index:2;
+  border:0; background:rgba(255,255,255,.85); width:40px; height:40px;
+  border-radius:999px; box-shadow: var(--shadow); cursor:pointer; font-size:1.5rem;
+}
+.carousel-btn.prev { left:10px; }  .carousel-btn.next { right:10px; }
+.caption { padding:.5rem .9rem; color:var(--muted); font-weight:600; }
+
+.thumbs {
+  display:grid; grid-template-columns: repeat(auto-fill, minmax(100px,1fr));
+  gap:.5rem; padding:.75rem 0 0;
+}
+.thumbs .thumb {
+  border:0; background:transparent; padding:0; cursor:pointer;
+  border-radius: 10px; overflow:hidden; outline-offset: 2px;
+}
+.thumbs .thumb img {
+  width:100%; height:70px; object-fit:cover; display:block;
+  transition: transform .15s ease;
+}
+.thumbs .thumb[aria-selected="true"] img { transform: scale(1.02); }
+.carousel-error {
+  margin:1rem 0; padding:.75rem 1rem; border-radius:10px; background:#fff4f2; color:#9e2e1a; border:1px solid #ffd2ca;
+}
+/* =========================================================
+   End of stylesheet
+   ========================================================= */
