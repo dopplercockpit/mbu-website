@@ -1,0 +1,69 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Find Bruno the Traveling Dog â€” Volume 1</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="logo-area">
+    <img src="https://mbu-assets.vercel.app/img/homepage/logo.jpg" alt="MBU logo" class="logo">
+    <h1>My Buddy Unconditionally</h1>
+  </div>
+  <nav class="nav-links"><a href="index.html">Home</a><a href="books.html">Books</a><a href="story.html">Story</a></nav>
+</header>
+
+<section class="page-hero">
+  <h1>Find Bruno â€” Volume 1</h1>
+  <p>Can you find Bruno? Click him to turn the page.</p>
+</section>
+
+<section class="three-panel" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;max-width:1200px;margin:2rem auto;padding:1rem;">
+  <div class="panel">
+    <img src="https://mbu-assets.vercel.app/img/homepage/books.jpg" alt="V1 Cover" style="width:100%;height:auto;border-radius:12px;">
+    <p><a href="https://www.amazon.com/s?k=Find+Bruno+the+Traveling+Dog+Volume+1+Dana+Greene" target="_blank" rel="noopener">Purchase Volume 1</a></p>
+  </div>
+  <div class="panel">
+    <h3>Instructions</h3>
+    <p>Find Bruno in the picture. Click him to reveal the solution.<br>(Weâ€™ll wire the full set of pages after approval of this interaction.)</p>
+  </div>
+  <div class="panel">
+    <h3>Can you find Bruno?</h3>
+    <!-- âœ… The puzzle renders here -->
+    <div id="puzzle" class="carousel-root" style="max-width:1000px;"></div>
+  </div>
+</section>
+
+<section class="capture">
+  <form class="mbu-capture" data-section="fbttd-v1">
+    <strong>Stay in the loop:</strong>
+    <input name="name" placeholder="Your name">
+    <input name="email" placeholder="Your email">
+    <button type="submit">Notify me</button>
+  </form>
+</section>
+
+<footer class="footer">
+  <p>Â© My Buddy Unconditionallyâ„¢</p>
+  <div class="links"><a href="contact.html">Contact Us</a> Â· <a href="terms.html">Terms and Conditions</a> Â· <a href="privacy.html">Privacy Notice</a></div>
+</footer>
+
+<!-- One copy only -->
+<script src="assets/js/site.js"></script>
+
+<!-- Hotspot module -->
+<script src="assets/js/hotspots.js"></script>
+<script>
+
+  initHotspotPuzzle({
+    jsonPath: 'https://mbu-assets.vercel.app/img/findbruno/v1/hotspots.json',
+    mount: '#puzzle',
+    debug: true
+  });
+
+</script>
+</body>
+</html>
+
