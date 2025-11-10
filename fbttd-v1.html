@@ -3,16 +3,19 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Find Bruno the Traveling Dog – Volume 1</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <meta name="description" content="Find Bruno the Traveling Dog - Volume 1: Sights to See in the U.S. - An interactive puzzle book">
+  <title>Find Bruno Volume 1 – MBU</title>
+  <link rel="preconnect" href="https://mbu-assets.vercel.app">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
 <header class="site-header">
   <div class="logo-area">
-    <img src="https://mbu-assets.vercel.app/img/homepage/logo.jpg" alt="MBU logo" class="logo">
+    <img src="https://mbu-assets.vercel.app/img/homepage/logo.jpg" alt="MBU logo" class="logo" width="52" height="52">
     <h1>My Buddy Unconditionally</h1>
   </div>
-  <nav class="site-nav">
+  <nav class="site-nav" role="navigation">
     <a href="index.html">Home</a>
     <a href="books.html">Books</a>
     <a href="clothing.html">Clothing</a>
@@ -23,81 +26,105 @@
 </header>
 
 <section class="page-hero">
-  <h1>Find Bruno – Volume 1: Sights to See in the U.S.</h1>
-  <p>Can you find Bruno? Click him to reveal the solution.</p>
+  <h1>Find Bruno – Volume 1</h1>
+  <p>Sights to See in the U.S. - Can you find Bruno the traveling dog?</p>
 </section>
 
-<section class="three-panel" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;max-width:1200px;margin:2rem auto;padding:1rem;">
+<section class="three-panel">
   
-  <!-- Panel 1: Cover -->
-  <div class="panel" style="background:#fff;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.08);padding:1.5rem;">
-    <img src="https://mbu-assets.vercel.app/img/homepage/find_bruno/V1 Cover.jpg" alt="Volume 1 Cover" style="width:100%;height:auto;border-radius:12px;margin-bottom:1rem;">
-    <h3 style="margin:.5rem 0;">Volume 1</h3>
-    <p style="color:#5a5f66;margin:.5rem 0;">Sights to See in the U.S.</p>
+  <!-- Panel 1: Book Cover -->
+  <div class="panel">
+    <img src="https://mbu-assets.vercel.app/img/homepage/find_bruno/V1 Cover.jpg" 
+         alt="Find Bruno Volume 1 cover" 
+         width="100%"
+         height="auto"
+         loading="eager"
+         style="margin-bottom:1.5rem;">
+    <h3>Volume 1</h3>
+    <p style="margin-bottom:1rem;">Sights to See in the U.S.</p>
     <a href="https://www.amazon.com/s?k=Find+Bruno+the+Traveling+Dog+Volume+1+Dana+Greene" 
        target="_blank" 
-       rel="noopener"
-       style="display:inline-block;margin-top:1rem;padding:.6rem 1.2rem;background:#4a8ca0;color:#fff;text-decoration:none;border-radius:10px;font-weight:600;">
-      Purchase Book
+       rel="noopener noreferrer"
+       style="display:inline-block;padding:0.8rem 1.5rem;background:var(--lake);color:#fff;text-decoration:none;border-radius:12px;font-weight:600;transition:all 0.3s ease;box-shadow:0 4px 12px rgba(74,140,160,0.3);"
+       onmouseover="this.style.background='var(--lake-dark)';this.style.transform='translateY(-2px)'"
+       onmouseout="this.style.background='var(--lake)';this.style.transform='translateY(0)'">
+      📚 Purchase Book
     </a>
   </div>
 
   <!-- Panel 2: Instructions -->
-  <div class="panel" style="background:#fff;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.08);padding:1.5rem;display:flex;flex-direction:column;justify-content:center;">
-    <h3 style="margin-bottom:1rem;">How to Play</h3>
-    <p style="color:#222a33;line-height:1.6;margin-bottom:1rem;">
-      Look carefully at the puzzle image on the right. Bruno the dog is hiding somewhere in the scene!
-    </p>
-    <p style="color:#222a33;line-height:1.6;margin-bottom:1rem;">
-      When you spot Bruno, <strong>click on him</strong> and the image will flip to show you the solution with Bruno circled.
-    </p>
-    <p style="color:#5a5f66;font-style:italic;font-size:.95rem;">
-      (This is a demo with placeholder images. Real puzzle images will be added soon!)
-    </p>
+  <div class="panel">
+    <h3>How to Play</h3>
+    <div style="text-align:left;">
+      <p style="margin-bottom:1rem;">
+        <strong>🔍 Your Mission:</strong> Find Bruno the dog hiding in the puzzle image!
+      </p>
+      
+      <ul style="list-style:none;padding:0;margin:0 0 1rem 0;">
+        <li style="padding:0.5rem 0;border-bottom:1px solid #f0f0f0;">
+          <strong>1.</strong> Look carefully at the puzzle image
+        </li>
+        <li style="padding:0.5rem 0;border-bottom:1px solid #f0f0f0;">
+          <strong>2.</strong> Click on Bruno when you spot him
+        </li>
+        <li style="padding:0.5rem 0;border-bottom:1px solid #f0f0f0;">
+          <strong>3.</strong> The solution will be revealed!
+        </li>
+        <li style="padding:0.5rem 0;">
+          <strong>💡</strong> Need help? A hint button appears after 30 seconds
+        </li>
+      </ul>
+
+      <div style="background:rgba(74,140,160,0.1);padding:1rem;border-radius:10px;margin-top:1rem;">
+        <p style="margin:0;font-size:0.9rem;color:var(--muted);">
+          <strong>Note:</strong> This is a demo with placeholder images. 
+          Real puzzle images will feature Bruno at actual U.S. landmarks!
+        </p>
+      </div>
+    </div>
   </div>
 
   <!-- Panel 3: Interactive Puzzle -->
-  <div class="panel" style="background:#fff;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.08);padding:1.5rem;">
-    <h3 style="margin-bottom:1rem;">Can you find Bruno?</h3>
+  <div class="panel" style="min-height:400px;">
+    <h3>🎯 Can You Find Bruno?</h3>
     <div id="puzzle"></div>
   </div>
 
 </section>
 
-<section class="capture" style="background:#fff;border:1px solid #efe8db;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.08);padding:1.5rem;margin:2rem auto;max-width:720px;">
+<!-- Newsletter Signup -->
+<section class="capture">
   <form class="mbu-capture" data-section="fbttd-v1">
-    <strong>Stay in the loop:</strong>
-    <input name="name" placeholder="Your name">
-    <input name="email" placeholder="Your email">
-    <button type="submit">Notify me</button>
+    <strong>🐕 Join Bruno's Adventures!</strong>
+    <input name="name" placeholder="Your name" required aria-label="Your name">
+    <input name="email" type="email" placeholder="Your email" required aria-label="Your email">
+    <button type="submit">Get Updates</button>
   </form>
 </section>
 
 <footer class="footer">
-  <p>© My Buddy Unconditionally™</p>
-  <div class="links">
-    <a href="contact.html">Contact Us</a> · 
-    <a href="terms.html">Terms and Conditions</a> · 
+  <p>&copy; 2025 My Buddy Unconditionally&trade;</p>
+  <nav class="links" aria-label="Footer navigation">
+    <a href="contact.html">Contact Us</a>
+    <a href="terms.html">Terms and Conditions</a>
     <a href="privacy.html">Privacy Notice</a>
-  </div>
+  </nav>
 </footer>
 
-<script src="assets/js/site.js"></script>
-<script src="assets/js/hotspots.js"></script>
+<!-- Scripts -->
+<script src="js/site.js"></script>
+<script src="js/hotspots.js"></script>
 <script>
+  // Initialize the interactive hotspot puzzle
   initHotspotPuzzle({
     jsonPath: 'https://mbu-assets.vercel.app/img/findbruno/v1/hotspots.json',
     mount: '#puzzle',
     assetBase: 'https://mbu-assets.vercel.app/img/findbruno/v1',
-    debug: true
+    debug: true, // Shows hotspot rectangles for demo - set to false in production
+    hintAfterSeconds: 30,
+    enableHints: true
   });
 </script>
-
-<style>
-  @media (max-width:900px){
-    .three-panel { grid-template-columns: 1fr !important; }
-  }
-</style>
 
 </body>
 </html>

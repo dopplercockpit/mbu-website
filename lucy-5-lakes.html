@@ -3,10 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Lucy's incredible journey visiting all 5 Great Lakes in one day">
   <title>Lucy – 5 Great Lakes – MBU</title>
+  <link rel="preconnect" href="https://mbu-assets.vercel.app">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+
 <header class="site-header">
   <div class="logo-area">
     <img src="https://mbu-assets.vercel.app/img/homepage/logo.jpg" alt="MBU logo" class="logo">
@@ -23,7 +26,7 @@
 </header>
 
 <section class="page-hero">
-  <h1>Lucy Surfed & Swam – 5 Great Lakes in 1 Day!</h1>
+  <h1>Lucy Surfed &amp; Swam – 5 Great Lakes in 1 Day!</h1>
   <p>Lucy, a mini-Bernie doodle, might be the first dog to swim, surf, or go into all 5 Great Lakes in 1 day on 8-2-2025.</p>
 </section>
 
@@ -82,84 +85,18 @@
 </footer>
 
 <script src="assets/js/site.js"></script>
+<script src="assets/js/lucy.js"></script>
 <script>
-// Demo version with placeholder data until real images are available
-(async function(){
-  const signBox = document.querySelector('#signs');
-  const lakeBox = document.querySelector('#lakes');
-  
-  // Demo data - replace with actual lake sign and photo filenames
-  const DEMO_SIGNS = [
-    'https://picsum.photos/id/1015/400/300', // Lake Superior
-    'https://picsum.photos/id/1016/400/300', // Lake Michigan
-    'https://picsum.photos/id/1018/400/300', // Lake Huron
-    'https://picsum.photos/id/1019/400/300', // Lake Erie
-    'https://picsum.photos/id/1020/400/300'  // Lake Ontario
-  ];
-  
-  const DEMO_LAKES = [
-    ['https://picsum.photos/id/237/400/300', 'https://picsum.photos/id/238/400/300'], // Superior photos
-    ['https://picsum.photos/id/239/400/300'], // Michigan photos
-    ['https://picsum.photos/id/240/400/300', 'https://picsum.photos/id/241/400/300'], // Huron photos
-    ['https://picsum.photos/id/242/400/300'], // Erie photos
-    ['https://picsum.photos/id/243/400/300']  // Ontario photos
-  ];
-  
-  const LAKE_NAMES = ['Superior', 'Michigan', 'Huron', 'Erie', 'Ontario'];
-  
-  // Create image elements
-  signBox.innerHTML = '<div class="carousel-wrapper" style="position:relative;"><img class="carousel-image" alt="" style="width:100%;height:auto;border-radius:12px;display:block;"></div>';
-  lakeBox.innerHTML = '<div class="carousel-wrapper" style="position:relative;"><img class="carousel-image" alt="" style="width:100%;height:auto;border-radius:12px;display:block;"></div>';
-  
-  const signImg = signBox.querySelector('img');
-  const lakeImg = lakeBox.querySelector('img');
-  
-  let lakeIndex = 0;      // Which lake (0-4)
-  let photoIndex = 0;     // Which photo within that lake
-  const STEP_MS = 3000;   // 3 seconds per image
-  
-  function showCurrent() {
-    // Show sign for current lake
-    signImg.src = DEMO_SIGNS[lakeIndex];
-    signImg.alt = `${LAKE_NAMES[lakeIndex]} sign`;
-    
-    // Show photo for current lake
-    const photos = DEMO_LAKES[lakeIndex];
-    if (photos && photos.length > 0) {
-      lakeImg.src = photos[photoIndex];
-      lakeImg.alt = `Lucy at ${LAKE_NAMES[lakeIndex]}`;
-      lakeImg.style.display = 'block';
-    } else {
-      lakeImg.style.display = 'none';
-    }
-  }
-  
-  function advance() {
-    const photos = DEMO_LAKES[lakeIndex];
-    
-    if (!photos || photos.length <= 1) {
-      // Single photo or none: move to next lake
-      lakeIndex = (lakeIndex + 1) % DEMO_SIGNS.length;
-      photoIndex = 0;
-    } else {
-      // Multiple photos: advance within lake
-      photoIndex++;
-      if (photoIndex >= photos.length) {
-        // Finished this lake's photos: move to next lake
-        lakeIndex = (lakeIndex + 1) % DEMO_SIGNS.length;
-        photoIndex = 0;
-      }
-    }
-    
-    showCurrent();
-    setTimeout(advance, STEP_MS);
-  }
-  
-  // Start the rotation
-  showCurrent();
-  setTimeout(advance, STEP_MS);
-  
-})();
+  // Initialize Lucy's synchronized display with actual CDN paths
+  initLucy({
+    base: 'https://mbu-assets.vercel.app/img/lucy',
+    signsPath: 'https://mbu-assets.vercel.app/img/lucy/signs.json',
+    lakesPath: 'https://mbu-assets.vercel.app/img/lucy/lakes.json',
+    signMount: '#signs',
+    lakeMount: '#lakes',
+    stepMs: 3000,
+    enableAnimations: true
+  });
 </script>
 
 <style>
