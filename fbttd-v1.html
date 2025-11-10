@@ -6,7 +6,7 @@
   <meta name="description" content="Find Bruno the Traveling Dog - Volume 1: Sights to See in the U.S. - An interactive puzzle book">
   <title>Find Bruno Volume 1 – MBU</title>
   <link rel="preconnect" href="https://mbu-assets.vercel.app">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
@@ -15,17 +15,50 @@
     <img src="https://mbu-assets.vercel.app/img/homepage/logo.jpg" alt="MBU logo" class="logo" width="52" height="52">
     <h1>My Buddy Unconditionally</h1>
   </div>
-  <nav class="site-nav" role="navigation">
+  <nav class="site-nav">
     <a href="index.html">Home</a>
-    <a href="books.html">Books</a>
-    <a href="clothing.html">Clothing</a>
-    <a href="songs.html">Songs</a>
-    <a href="woodworking.html">Woodworking</a>
+
+    <div class="has-sub">
+      <a href="books.html">Books</a>
+      <div class="submenu">
+        <a href="mbu-book.html">My Buddy Unconditionally (Book)</a>
+        <a href="fbttd-v1.html">Find Bruno Vol. 1</a>
+        <a href="fbttd-v2.html">Find Bruno Vol. 2</a>
+        <a href="fbttd-v3.html">Find Bruno Vol. 3</a>
+        <a href="fbttd-v4.html">Find Bruno Vol. 4</a>
+        <a href="momm-book.html">The Making of Magnificent Michigan (Book)</a>
+        <a href="lucy-5-lakes.html">Lucy 5 Great Lakes</a>
+      </div>
+    </div>
+
+    <div class="has-sub">
+      <a href="clothing.html">Clothing</a>
+      <div class="submenu">
+        <a href="clothing.html#mbu">MBU</a>
+        <a href="clothing.html#findbruno">Find Bruno</a>
+        <a href="clothing.html#dogthing">It's a Dog Thing</a>
+        <a href="clothing.html#ibelieve">I Believe I Will</a>
+      </div>
+    </div>
+
+    <div class="has-sub">
+      <a href="songs.html">Songs</a>
+      <div class="submenu">
+        <a href="mbu-song.html">My Buddy Unconditionally</a>
+        <a href="cartwheels.html">Cartwheels on the Water</a>
+      </div>
+    </div>
+
+    <div class="has-sub">
+      <a href="woodworking.html">Woodworking</a>
+      <div class="submenu">
+        <a href="momm.html">Table Build Photos & Videos</a>
+        <a href="momm-book.html">The Making of Magnificent Michigan (Book)</a>
+      </div>
+    </div>
+
     <a href="story.html">Story</a>
   </nav>
-  <link rel="stylesheet" href="assets/css/style.css">
-  <script defer src="assets/js/site.js"></script>
-  <script defer src="assets/js/hotspots.js"></script>
 </header>
 
 <section class="page-hero">
@@ -42,15 +75,13 @@
          width="100%"
          height="auto"
          loading="eager"
-         style="margin-bottom:1.5rem;">
+         style="margin-bottom:1.5rem;max-width:100%;height:auto;">
     <h3>Volume 1</h3>
     <p style="margin-bottom:1rem;">Sights to See in the U.S.</p>
     <a href="https://www.amazon.com/s?k=Find+Bruno+the+Traveling+Dog+Volume+1+Dana+Greene" 
        target="_blank" 
        rel="noopener noreferrer"
-       style="display:inline-block;padding:0.8rem 1.5rem;background:var(--lake);color:#fff;text-decoration:none;border-radius:12px;font-weight:600;transition:all 0.3s ease;box-shadow:0 4px 12px rgba(74,140,160,0.3);"
-       onmouseover="this.style.background='var(--lake-dark)';this.style.transform='translateY(-2px)'"
-       onmouseout="this.style.background='var(--lake)';this.style.transform='translateY(0)'">
+       style="display:inline-block;padding:0.8rem 1.5rem;background:var(--lake);color:#fff;text-decoration:none;border-radius:12px;font-weight:600;transition:all 0.3s ease;box-shadow:0 4px 12px rgba(74,140,160,0.3);">
       📚 Purchase Book
     </a>
   </div>
@@ -80,8 +111,7 @@
 
       <div style="background:rgba(74,140,160,0.1);padding:1rem;border-radius:10px;margin-top:1rem;">
         <p style="margin:0;font-size:0.9rem;color:var(--muted);">
-          <strong>Note:</strong> This is a demo with placeholder images. 
-          Real puzzle images will feature Bruno at actual U.S. landmarks!
+          <strong>Note:</strong> This is a demo puzzle. The actual book features Bruno at real U.S. landmarks!
         </p>
       </div>
     </div>
@@ -90,7 +120,7 @@
   <!-- Panel 3: Interactive Puzzle -->
   <div class="panel" style="min-height:400px;">
     <h3>🎯 Can You Find Bruno?</h3>
-    <div id="puzzle"></div>
+    <div id="puzzle" style="margin-top:1rem;"></div>
   </div>
 
 </section>
@@ -106,28 +136,47 @@
 </section>
 
 <footer class="footer">
-  <p>&copy; 2025 My Buddy Unconditionally&trade;</p>
+  <p>© 2025 My Buddy Unconditionally™</p>
   <nav class="links" aria-label="Footer navigation">
-    <a href="contact.html">Contact Us</a>
-    <a href="terms.html">Terms and Conditions</a>
+    <a href="contact.html">Contact Us</a> ·
+    <a href="terms.html">Terms and Conditions</a> ·
     <a href="privacy.html">Privacy Notice</a>
   </nav>
 </footer>
 
 <!-- Scripts -->
-<script src="js/site.js"></script>
-<script src="js/hotspots.js"></script>
+<script src="assets/js/site.js"></script>
+<script src="assets/js/hotspots.js"></script>
 <script>
   // Initialize the interactive hotspot puzzle
   initHotspotPuzzle({
     jsonPath: 'https://mbu-assets.vercel.app/img/findbruno/v1/hotspots.json',
     mount: '#puzzle',
     assetBase: 'https://mbu-assets.vercel.app/img/findbruno/v1',
-    debug: true, // Shows hotspot rectangles for demo - set to false in production
+    debug: false, // Set to true to see hotspot rectangles for debugging
     hintAfterSeconds: 30,
     enableHints: true
   });
 </script>
+
+<!-- Add CSS to constrain puzzle image size -->
+<style>
+  .hotspot-canvas {
+    max-width: 100% !important;
+    max-height: 600px !important;
+    object-fit: contain !important;
+  }
+  
+  @media (max-width: 900px) {
+    .three-panel {
+      grid-template-columns: 1fr !important;
+    }
+    
+    .hotspot-canvas {
+      max-height: 400px !important;
+    }
+  }
+</style>
 
 </body>
 </html>
