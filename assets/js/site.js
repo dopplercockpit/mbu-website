@@ -71,19 +71,27 @@
   // =========================================================
   function initDropdowns() {
     const dropdowns = $$('.nav-links .has-sub');
-    
+
     dropdowns.forEach(dropdown => {
       const link = $('a', dropdown);
       const submenu = $('.submenu', dropdown);
-      
+
       if (!link || !submenu) return;
 
       link.setAttribute('aria-haspopup', 'true');
       link.setAttribute('aria-expanded', 'false');
 
-      // Desktop: hover behavior
+      // Store timeout reference for delayed closing
+      let closeTimeout;
+
+      // Desktop: hover behavior with delay
       dropdown.addEventListener('mouseenter', () => {
         if (window.innerWidth > 740) {
+          // Clear any pending close timeout
+          if (closeTimeout) {
+            clearTimeout(closeTimeout);
+            closeTimeout = null;
+          }
           dropdown.classList.add('open');
           link.setAttribute('aria-expanded', 'true');
         }
@@ -91,8 +99,11 @@
 
       dropdown.addEventListener('mouseleave', () => {
         if (window.innerWidth > 740) {
-          dropdown.classList.remove('open');
-          link.setAttribute('aria-expanded', 'false');
+          // Add 300ms delay before closing to allow user to move to submenu
+          closeTimeout = setTimeout(() => {
+            dropdown.classList.remove('open');
+            link.setAttribute('aria-expanded', 'false');
+          }, 300);
         }
       });
 
@@ -102,7 +113,7 @@
           e.preventDefault();
           const isOpen = dropdown.classList.toggle('open');
           link.setAttribute('aria-expanded', String(isOpen));
-          
+
           // Close other dropdowns
           dropdowns.forEach(other => {
             if (other !== dropdown && other.classList.contains('open')) {
@@ -211,8 +222,9 @@
     // Find all clickable images in carousels and galleries
     const setupLightboxImages = () => {
       const carouselImages = $$('.carousel-image');
-      const galleryImages = $$('.showcase-item img, .mini-strip img, .panel img');
-      
+      // Exclude .showcase-item img and .mini-strip img from lightbox (home page thumbnails should navigate)
+      const galleryImages = $$('.panel img');
+
       [...carouselImages, ...galleryImages].forEach((img, index) => {
         img.style.cursor = 'pointer';
         img.setAttribute('data-lightbox-index', index);

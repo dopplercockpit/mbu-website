@@ -99,6 +99,7 @@ body {
   padding: 10px 24px 16px;
   flex-wrap: wrap;
   align-items: center;
+  font-family: "Patrick Hand", cursive;
 }
 
 .site-nav a {
@@ -107,7 +108,7 @@ body {
   padding: 10px 18px;
   border-radius: 24px;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 1.1rem;
   transition: var(--transition);
   position: relative;
   overflow: hidden;
@@ -198,6 +199,52 @@ body {
   gap: 10px;
   flex-wrap: wrap;
   align-items: center;
+  padding: 10px 24px 16px;
+  font-family: "Patrick Hand", cursive;
+}
+
+.nav-links > a {
+  color: var(--ink);
+  text-decoration: none;
+  padding: 10px 18px;
+  border-radius: 24px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-links > a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(74,140,160,0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.nav-links > a:hover::before {
+  left: 100%;
+}
+
+.nav-links > a:hover {
+  background: rgba(74,140,160,0.12);
+  color: var(--lake-dark);
+  transform: translateY(-2px);
+}
+
+.nav-links > a.active {
+  background: var(--lake);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(74,140,160,0.4);
+}
+
+.nav-links > a.active:hover {
+  background: var(--lake-dark);
+  transform: translateY(-2px);
 }
 
 .nav-links > .has-sub {
@@ -208,6 +255,37 @@ body {
   display: flex;
   align-items: center;
   gap: 6px;
+  color: var(--ink);
+  text-decoration: none;
+  padding: 10px 18px;
+  border-radius: 24px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-links > .has-sub > a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(74,140,160,0.1), transparent);
+  transition: left 0.5s ease;
+  z-index: -1;
+}
+
+.nav-links > .has-sub > a:hover::before {
+  left: 100%;
+}
+
+.nav-links > .has-sub > a:hover {
+  background: rgba(74,140,160,0.12);
+  color: var(--lake-dark);
+  transform: translateY(-2px);
 }
 
 .nav-links > .has-sub > a::after {
@@ -224,7 +302,7 @@ body {
 
 .nav-links .submenu {
   position: absolute;
-  top: calc(100% + 8px);
+  top: calc(100% + 4px);
   left: 0;
   min-width: 240px;
   background: white;
@@ -235,6 +313,18 @@ body {
   display: none;
   z-index: 100;
   animation: slideDown 0.3s ease;
+  /* Add invisible padding area above submenu to bridge the gap */
+  margin-top: 0;
+}
+
+.nav-links .submenu::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background: transparent;
 }
 
 @keyframes slideDown {
@@ -273,26 +363,33 @@ body {
    ========================================================= */
 .homepage-showcase {
   display: grid;
-  grid-template-columns: repeat(4, minmax(220px, 1fr));
-  gap: 32px;
+  grid-template-columns: repeat(6, minmax(180px, 1fr));
+  gap: 24px;
   padding: 32px;
-  max-width: 1360px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
 .showcase-item {
+  display: block;
   background: var(--panel);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: 12px 12px 16px;
   transition: var(--transition);
   animation: fadeInUp 0.6s ease backwards;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
 }
 
 .showcase-item:nth-child(1) { animation-delay: 0.1s; }
 .showcase-item:nth-child(2) { animation-delay: 0.2s; }
 .showcase-item:nth-child(3) { animation-delay: 0.3s; }
 .showcase-item:nth-child(4) { animation-delay: 0.4s; }
+.showcase-item:nth-child(5) { animation-delay: 0.5s; }
+.showcase-item:nth-child(6) { animation-delay: 0.6s; }
 
 @keyframes fadeInUp {
   from {
@@ -315,18 +412,12 @@ body {
   font-weight: 700;
   font-size: 1.3rem;
   color: var(--ink);
-}
-
-.showcase-item a {
-  display: block;
-  position: relative;
-  overflow: hidden;
-  border-radius: 12px;
+  text-decoration: none;
 }
 
 .showcase-item img {
   width: 100%;
-  height: 220px;
+  aspect-ratio: 1;
   object-fit: cover;
   border-radius: 12px;
   display: block;
@@ -334,7 +425,7 @@ body {
   transition: var(--transition);
 }
 
-.showcase-item a:hover img {
+.showcase-item:hover img {
   transform: scale(1.05);
   box-shadow: 0 8px 24px rgba(0,0,0,0.2);
 }
@@ -868,11 +959,11 @@ form.mbu-capture.sent::after {
 /* =========================================================
    Responsive Design
    ========================================================= */
-@media (max-width: 1200px) {
+@media (max-width: 1300px) {
   .homepage-showcase {
-    grid-template-columns: repeat(3, minmax(220px, 1fr));
-    gap: 28px;
-    padding: 28px;
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
+    gap: 24px;
+    padding: 24px;
   }
   .mini-strip {
     grid-template-columns: repeat(3, 220px);
