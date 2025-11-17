@@ -584,20 +584,24 @@ body {
 
 .carousel-wrapper {
   position: relative;
-  background: #fff;
+  background: linear-gradient(135deg, #f7f3ef 0%, #ebe4d8 100%);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   overflow: hidden;
-  min-height: 320px;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .carousel-image {
   width: 100%;
-  height: auto;
+  height: 600px;
   display: block;
   opacity: 0;
   transition: opacity 0.5s ease;
   cursor: pointer;
+  object-fit: contain;
 }
 
 .carousel-image.active {
@@ -1011,16 +1015,16 @@ form.mbu-capture.sent::after {
   .site-header h1 {
     font-size: 1.15rem;
   }
-  
+
   .logo {
     width: 44px;
     height: 44px;
   }
-  
+
   .mobile-menu-toggle {
     display: block;
   }
-  
+
   .site-nav {
     display: none;
     flex-direction: column;
@@ -1029,39 +1033,47 @@ form.mbu-capture.sent::after {
     background: rgba(255,255,255,0.98);
     border-top: 1px solid rgba(201,191,174,0.2);
   }
-  
+
   .site-nav.mobile-open {
     display: flex;
     animation: slideDown 0.3s ease;
   }
-  
+
   .site-nav a {
     width: 100%;
     text-align: left;
   }
-  
+
   .homepage-showcase {
     grid-template-columns: 1fr;
     gap: 20px;
     padding: 20px;
   }
-  
+
   .showcase-item img {
     height: 50vw;
     max-height: 300px;
   }
-  
+
   .page-hero {
     padding: 2.5rem 1.5rem 1.5rem;
   }
-  
+
   .capture {
     padding: 1.5rem;
   }
-  
+
   form.mbu-capture input,
   form.mbu-capture button {
     width: 100%;
+  }
+
+  .carousel-wrapper {
+    min-height: 400px;
+  }
+
+  .carousel-image {
+    height: 400px;
   }
 }
 
