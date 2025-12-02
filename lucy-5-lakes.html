@@ -63,8 +63,8 @@
 </header>
 
 <section class="page-hero">
-  <h1>Lucy Surfed &amp; Swam – 5 Great Lakes in 1 Day!</h1>
-  <p>Lucy, a mini-Bernie doodle, might be the first dog to swim, surf, or go into all 5 Great Lakes in 1 day on 8-2-2025.</p>
+  <h1>Lucy's Great Lakes Surfing Adventure - 5 Great Lakes in 1 Day!</h1>
+  <p>Follow Lucy's incredible journey as she visits all five Great Lakes in a single day.</p>
 </section>
 
 <section class="three-panel" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;max-width:1200px;margin:2rem auto;padding:1rem;">
@@ -87,57 +87,40 @@
 
   <script>
 (async () => {
-  const base = 'https://mbu-assets.vercel.app/img/lucy/intro';
-  const res = await fetch(`${base}/intro_box.json`);
-  const data = await res.json();
   const mount = document.querySelector('#lucy-intro');
   if (!mount) return;
 
   // clear
   mount.innerHTML = '';
 
-  // video (16:9, responsive)
-  if (data.video) {
-    const iframe = document.createElement('iframe');
-    iframe.src = data.video;
-    iframe.title = 'Lucy video';
-    iframe.loading = 'lazy';
-    iframe.style.width = '100%';
-    iframe.style.aspectRatio = '16/9';
-    iframe.style.border = 0;
-    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-    iframe.allowFullscreen = true;
-    mount.appendChild(iframe);
-  }
-
-  // image fallback/companion
-  if (data.image) {
-    const img = document.createElement('img');
-    img.src = `${base}/${encodeURIComponent(data.image)}`;
-    img.alt = 'My Buddy Unconditionally';
-    img.loading = 'lazy';
-    img.style.width = '100%';
-    img.style.display = 'block';
-    img.style.marginTop = '0.75rem';
-    mount.appendChild(img);
-  }
+  // Embed the specific video
+  const iframe = document.createElement('iframe');
+  iframe.src = 'https://www.youtube.com/embed/SVK3-enR-r0';
+  iframe.title = 'Lucy video';
+  iframe.loading = 'lazy';
+  iframe.style.width = '100%';
+  iframe.style.aspectRatio = '16/9';
+  iframe.style.border = 0;
+  iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+  iframe.allowFullscreen = true;
+  mount.appendChild(iframe);
 })();
 </script>
 
 
   <!-- Panel 2: Lake Signs -->
   <div class="panel" style="background:#fff;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.08);padding:1.5rem;">
-    <h3 style="margin-bottom:1rem;">Lake Signs</h3>
-    <div id="signs" style="min-height:300px;display:flex;align-items:center;justify-content:center;background:#f7f2ea;border-radius:12px;padding:1rem;">
-      <p style="color:#5a5f66;text-align:center;">Loading lake signs...</p>
+    <h3 style="margin-bottom:1rem;">5 Great Lakes</h3>
+    <div id="signs" style="display:flex;align-items:center;justify-content:center;background:#f7f2ea;border-radius:12px;overflow:hidden;">
+      <p style="color:#5a5f66;text-align:center;padding:2rem;">Loading lake signs...</p>
     </div>
   </div>
 
   <!-- Panel 3: Lucy at Each Lake -->
   <div class="panel" style="background:#fff;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.08);padding:1.5rem;">
-    <h3 style="margin-bottom:1rem;">Lucy at Each Lake</h3>
-    <div id="lakes" style="min-height:300px;display:flex;align-items:center;justify-content:center;background:#f7f2ea;border-radius:12px;padding:1rem;">
-      <p style="color:#5a5f66;text-align:center;">Loading Lucy's photos...</p>
+    <h3 style="margin-bottom:1rem;">Lucy at each Great Lake</h3>
+    <div id="lakes" style="display:flex;align-items:center;justify-content:center;background:#f7f2ea;border-radius:12px;overflow:hidden;">
+      <p style="color:#5a5f66;text-align:center;padding:2rem;">Loading Lucy's photos...</p>
     </div>
   </div>
 
@@ -153,7 +136,7 @@
 </section>
 
 <footer class="footer">
-  <p>© My Buddy Unconditionally™</p>
+  <p>© 2025 My Buddy Unconditionally LLC</p>
   <div class="links">
     <a href="contact.html">Contact Us</a> ·
     <a href="terms.html">Terms and Conditions</a> ·
@@ -177,11 +160,38 @@
 </script>
 
 <style>
+  /* Responsive grid layout */
   @media (max-width:900px){
     .three-panel { grid-template-columns: 1fr !important; }
   }
-  .carousel-image {
-    transition: opacity 0.3s ease;
+
+  /* Card containers - auto height to wrap content */
+  #signs,
+  #lakes {
+    width: 100%;
+    height: auto;
+  }
+
+  /* Carousel wrapper - auto height, no centering */
+  #signs .carousel-wrapper,
+  #lakes .carousel-wrapper {
+    height: auto !important;
+    background: #f7f2ea;
+    display: block !important;
+  }
+
+  /* Image styling - full width, auto height, no cropping */
+  #signs .carousel-image,
+  #lakes .carousel-image {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+  }
+
+  /* Hide captions */
+  #signs .caption,
+  #lakes .caption {
+    display: none !important;
   }
 </style>
 

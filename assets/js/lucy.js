@@ -70,17 +70,17 @@
 
       // Build HTML structure
       signBox.innerHTML = `
-        <div class="carousel-wrapper" style="position:relative;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.08);">
+        <div class="carousel-wrapper" style="position:relative;background:#f7f2ea;border-radius:0;overflow:hidden;box-shadow:none;">
           <img class="carousel-image" alt="Lake sign" style="width:100%;height:auto;display:block;opacity:0;transition:opacity 0.5s ease;">
-          <div class="caption" style="padding:0.75rem 1rem;color:#5a5f66;font-weight:600;text-align:center;"></div>
         </div>
+        <div class="caption" style="display:none;"></div>
       `;
 
       lakeBox.innerHTML = `
-        <div class="carousel-wrapper" style="position:relative;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.08);">
+        <div class="carousel-wrapper" style="position:relative;background:#f7f2ea;border-radius:0;overflow:hidden;box-shadow:none;">
           <img class="carousel-image" alt="Lucy at lake" style="width:100%;height:auto;display:block;opacity:0;transition:opacity 0.5s ease;">
-          <div class="caption" style="padding:0.75rem 1rem;color:#5a5f66;font-weight:600;text-align:center;"></div>
         </div>
+        <div class="caption" style="display:none;"></div>
       `;
 
       const signImg = signBox.querySelector('img');
