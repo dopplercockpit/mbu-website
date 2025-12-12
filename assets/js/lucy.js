@@ -70,15 +70,15 @@
 
       // Build HTML structure
       signBox.innerHTML = `
-        <div class="carousel-wrapper" style="position:relative;background:#f7f2ea;border-radius:0;overflow:hidden;box-shadow:none;">
-          <img class="carousel-image" alt="Lake sign" style="width:100%;height:auto;display:block;opacity:0;transition:opacity 0.5s ease;">
+        <div class="media-container">
+          <img class="carousel-image" alt="Lake sign" style="opacity:0;transition:opacity 0.5s ease;">
         </div>
         <div class="caption" style="display:none;"></div>
       `;
 
       lakeBox.innerHTML = `
-        <div class="carousel-wrapper" style="position:relative;background:#f7f2ea;border-radius:0;overflow:hidden;box-shadow:none;">
-          <img class="carousel-image" alt="Lucy at lake" style="width:100%;height:auto;display:block;opacity:0;transition:opacity 0.5s ease;">
+        <div class="media-container">
+          <img class="carousel-image" alt="Lucy at lake" style="opacity:0;transition:opacity 0.5s ease;">
         </div>
         <div class="caption" style="display:none;"></div>
       `;

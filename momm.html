@@ -51,48 +51,102 @@
 </nav>
 </header>
 
-<section class="page-hero">
-  <h1>The Making of Magnificent Michigan</h1>
-  <p>Table build photos and videos</p>
-</section>
+<section class="page-hero" style="padding:2rem 1rem 1rem 1rem;margin-top:0;">
+  <h1>The Making of "Magnificent Michigan" Epoxy Table & Metal Bridge</h1>
 
-<section class="three-panel" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;max-width:1200px;margin:2rem auto;padding:1rem;">
-  <div class="panel"><!-- Panel 1: cover/art --></div>
-  <div class="panel"><!-- Panel 2: words/instructions --></div>
-  <div class="panel">
-    <h3><!-- Panel 3 heading --></h3>
-    <div id="page-carousel" class="carousel-root"></div>
+  <!-- Video Button -->
+  <div style="margin:1.5rem 0;">
+    <a href="https://www.youtube.com/@OldLadyWoodworking"
+       target="_blank"
+       rel="noopener noreferrer"
+       style="display:inline-block;padding:1rem 2rem;background:#f4c542;color:#222;text-decoration:none;border-radius:12px;font-weight:700;font-size:1.1rem;transition:all 0.3s ease;box-shadow:0 4px 12px rgba(244,197,66,0.4);">
+      🎥 Watch VIDEOS of the Build: @OldLadyWoodworking
+    </a>
+  </div>
+
+  <!-- Introductory Description -->
+  <div style="max-width:1200px;margin:1.5rem auto;padding:1rem;background:rgba(255,255,255,0.8);border-radius:12px;line-height:1.8;">
+    <p style="color:#222a33;font-size:1.05rem;">
+      This one-of-a-kind hand-craftsmanship and construction make this piece the epitome of functional ART. Both its remarkable natural shape, that strikingly resembles Michigan's Lower Peninsula and its large percentage of live edges make this white oak slab a rare find and truly a unique piece of ART! Connecting the upper and lower peninsulas is a metal replica of the Mackinaw Bridge with over 1,000 welds, 1,500 cuts and 3,000 grinds. Lakes of majestic blue epoxy resin (25 gallons) unify the live edges of this truly unique and inimitable piece.
+    </p>
   </div>
 </section>
 
+<!-- 3-Box Grid Layout -->
+<section class="three-panel" style="display:grid;grid-template-columns:1fr 1fr 1.4fr;gap:1.5rem;max-width:1400px;margin:1rem auto 2rem auto;padding:1rem;">
+
+  <!-- Box 1: Table on Beach (Head-on view) -->
+  <div class="panel" style="background:#fff;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.08);padding:1.5rem;">
+    <h3>Magnificent Michigan Table</h3>
+    <img src="https://mbu-assets.vercel.app/img/momm/table-beach-headon.jpg"
+         alt="Magnificent Michigan Table on Beach - Head-on View"
+         style="width:100%;height:auto;border-radius:12px;margin:1rem 0;">
+    <p style="color:#5a5f66;line-height:1.7;font-size:0.95rem;margin-top:1rem;">
+      Michigan's upper and lower peninsulas are a stately white oak and the surrounding land areas are a deep rich walnut, all native to Michigan. This table seats 14 people.
+    </p>
+  </div>
+
+  <!-- Box 2: Table on Grass (Side profile view) -->
+  <div class="panel" style="background:#fff;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.08);padding:1.5rem;">
+    <h3>Magnificent Michigan Table</h3>
+    <img src="https://mbu-assets.vercel.app/img/momm/table-grass-side.jpg"
+         alt="Magnificent Michigan Table on Grass - Side Profile View"
+         style="width:100%;height:auto;border-radius:12px;margin:1rem 0;">
+  </div>
+
+  <!-- Box 3: Photos of the Build (Carousel - Wider) -->
+  <div class="panel" style="background:#fff;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.08);padding:1.5rem;">
+    <h3>Photos of the Build</h3>
+    <div id="page-carousel" class="carousel-root"></div>
+  </div>
+
+</section>
+
 <section class="capture">
-  <form class="mbu-capture" data-section="<!-- slug -->">
-    <strong>Stay in the loop:</strong>
-    <input name="name" placeholder="Your name"><input name="email" placeholder="Your email">
-    <button type="submit">Notify me</button>
+  <form class="mbu-capture" data-section="momm-table">
+    <strong>Stay updated on the Magnificent Michigan Table:</strong>
+    <input name="name" placeholder="Your name" required aria-label="Your name">
+    <input name="email" type="email" placeholder="Your email" required aria-label="Your email">
+    <button type="submit">Notify Me</button>
   </form>
 </section>
 
+<!-- Responsive Styling -->
+<style>
+  @media (max-width: 1100px) {
+    .three-panel {
+      grid-template-columns: 1fr 1fr !important;
+    }
+    .three-panel .panel:last-child {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .three-panel {
+      grid-template-columns: 1fr !important;
+    }
+    .three-panel .panel:last-child {
+      grid-column: auto;
+    }
+  }
+</style>
+
 <footer class="footer">
-  <p>&copy; My Buddy Unconditionally&trade;</p>
-  <div class="links"><a href="contact.html">Contact Us</a> &middot; <a href="terms.html">Terms and Conditions</a> &middot; <a href="privacy.html">Privacy Notice</a></div>
+  <p>&copy; 2025 My Buddy Unconditionally LLC</p>
+  <div class="links"><a href="contact.html">Contact Us</a> &middot; <a href="terms.html">Terms and Conditions</a> &middot; <a href="privacy.html">Privacy Notice</a> &middot; <a href="story.html">The Story Behind It All</a> &middot; <a href="contact.html#newsletter">Join Email Notification List</a></div>
 </footer>
 
 <script src="assets/js/site.js"></script>
 <script src="assets/js/carousel.js"></script>
 <script>
   loadCarousel({
-    // swap to CDN whenever ready:
     jsonPath: 'https://mbu-assets.vercel.app/img/momm/images.json',
     mount: '#page-carousel',
-    autoplayMs: 3000,
-    showCaptions: true
+    autoplayMs: 4000,
+    showCaptions: true,
+    showThumbnails: false
   });
-</script>
-<script src="assets/js/site.js"></script>
-<script src="assets/js/carousel.js"></script>
-<script>
-  
 </script>
 
 </body>

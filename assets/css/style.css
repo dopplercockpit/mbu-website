@@ -518,6 +518,34 @@ body {
 }
 
 /* =========================================================
+   Universal Card Media Container
+   ========================================================= */
+.media-container {
+  /* 1. Define the Stage */
+  width: 100%;
+  height: 0;
+  padding-bottom: 75%; /* Creates a consistent 4:3 Aspect Ratio (Standard Photo shape) */
+  position: relative;
+  background-color: #f7f2ea; /* Matches your beige card background */
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.media-container img,
+.media-container iframe {
+  /* 2. Position the Actor */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  /* 3. The Magic Command */
+  object-fit: contain; /* Shows WHOLE image, never cropped */
+  object-position: center; /* Always centered */
+}
+
+/* =========================================================
    Three-Panel Layout
    ========================================================= */
 .three-panel {

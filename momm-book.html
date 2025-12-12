@@ -56,26 +56,76 @@
   <p>A beautiful coffee table book documenting the creation of the Magnificent Michigan epoxy table</p>
 </section>
 
-<section class="three-panel" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;max-width:1200px;margin:2rem auto;padding:1rem;">
-  <div class="panel"><!-- Panel 1: cover/art --></div>
-  <div class="panel"><!-- Panel 2: words/instructions --></div>
-  <div class="panel">
-    <h3><!-- Panel 3 heading --></h3>
+<section class="three-panel" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;max-width:1200px;margin:2rem auto;padding:1rem;">
+
+  <!-- Column 1: Book Cover -->
+  <div class="panel" style="background:#fff;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.08);padding:1.5rem;">
+    <h3>Book Cover</h3>
+    <img src="https://mbu-assets.vercel.app/img/momm-book/cover.jpg"
+         alt="The Making of Magnificent Michigan Book Cover"
+         style="width:100%;height:auto;border-radius:12px;margin:1rem 0;">
+    <a href="https://www.amazon.com/s?k=The+Making+of+Magnificent+Michigan"
+       target="_blank"
+       rel="noopener noreferrer"
+       style="display:inline-block;padding:0.8rem 1.5rem;background:#f4c542;color:#222;text-decoration:none;border-radius:12px;font-weight:600;transition:all 0.3s ease;box-shadow:0 4px 12px rgba(244,197,66,0.3);">
+      📚 Purchase Book
+    </a>
+  </div>
+
+  <!-- Column 2: About the Book -->
+  <div class="panel" style="background:#fff;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.08);padding:1.5rem;">
+    <h3>About the Book</h3>
+    <div style="text-align:left;color:#5a5f66;line-height:1.7;">
+      <p style="margin-bottom:1rem;">
+        <strong>The Making of Magnificent Michigan</strong> is a stunning coffee table book that chronicles the incredible journey of creating a one-of-a-kind epoxy river table shaped like Michigan's Lower Peninsula.
+      </p>
+      <p style="margin-bottom:1rem;">
+        This table seats up to 14 people and measures 10 ft by 6 ft by 2 inches deep. The white oak slab's natural shape strikingly resembles Michigan's Lower Peninsula, with a large percentage of live edges making it a rare find.
+      </p>
+      <p style="margin-bottom:1rem;">
+        Follow along as artist Dana Greene transforms this raw slab into a functional work of art, combining traditional woodworking with modern epoxy techniques to create the Magnificent Michigan table.
+      </p>
+      <p style="margin-bottom:1rem;">
+        <strong>Features:</strong>
+      </p>
+      <ul style="list-style:none;padding:0;margin:0;">
+        <li style="padding:0.5rem 0;border-bottom:1px solid #f0f0f0;">✓ Full-color photography</li>
+        <li style="padding:0.5rem 0;border-bottom:1px solid #f0f0f0;">✓ Step-by-step build process</li>
+        <li style="padding:0.5rem 0;border-bottom:1px solid #f0f0f0;">✓ Behind-the-scenes insights</li>
+        <li style="padding:0.5rem 0;">✓ Perfect for woodworking enthusiasts</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Column 3: Inside the Book (Carousel) -->
+  <div class="panel" style="background:#fff;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.08);padding:1.5rem;">
+    <h3>Inside the Book</h3>
     <div id="page-carousel" class="carousel-root"></div>
   </div>
+
 </section>
 
 <section class="capture">
-  <form class="mbu-capture" data-section="<!-- slug -->">
-    <strong>Stay in the loop:</strong>
-    <input name="name" placeholder="Your name"><input name="email" placeholder="Your email">
-    <button type="submit">Notify me</button>
+  <form class="mbu-capture" data-section="momm-book">
+    <strong>Stay updated on The Making of Magnificent Michigan:</strong>
+    <input name="name" placeholder="Your name" required aria-label="Your name">
+    <input name="email" type="email" placeholder="Your email" required aria-label="Your email">
+    <button type="submit">Notify Me</button>
   </form>
 </section>
 
+<!-- Responsive Styling -->
+<style>
+  @media (max-width: 900px) {
+    .three-panel {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
+
 <footer class="footer">
-  <p>&copy; My Buddy Unconditionally&trade;</p>
-  <div class="links"><a href="contact.html">Contact Us</a> &middot; <a href="terms.html">Terms and Conditions</a> &middot; <a href="privacy.html">Privacy Notice</a></div>
+  <p>&copy; 2025 My Buddy Unconditionally LLC</p>
+  <div class="links"><a href="contact.html">Contact Us</a> &middot; <a href="terms.html">Terms and Conditions</a> &middot; <a href="privacy.html">Privacy Notice</a> &middot; <a href="story.html">The Story Behind It All</a> &middot; <a href="contact.html#newsletter">Join Email Notification List</a></div>
 </footer>
 
 <script src="assets/js/site.js"></script>
